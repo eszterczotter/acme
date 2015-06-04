@@ -1,0 +1,19 @@
+actor: Tester
+paths:
+    tests: tests
+    log: tests/.codeception/log
+    data: tests/.codeception/data
+    helpers: tests/.codeception/helpers
+settings:
+    bootstrap: .codeception/bootstrap.php
+    colors: true
+    memory_limit: 1024M
+modules:
+    config:
+        Db:
+            dsn: ''
+            user: ''
+            password: ''
+            dump: tests/.codeception/data/dump.sql
+        PhpBrowser:
+            url: http://localhost:8000

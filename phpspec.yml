@@ -1,0 +1,7 @@
+suites:
+  main:
+    namespace: Acme
+    psr4_prefix: Acme
+    src_path: php
+    spec_path: tests
+    spec_prefix: unit

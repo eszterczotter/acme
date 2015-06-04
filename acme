@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+
+$application = require 'bootstrap/application.php';
+
+$application->run();

@@ -1,0 +1,3 @@
+Test drive running the Application
+Extract possible packages
+Create rename task
