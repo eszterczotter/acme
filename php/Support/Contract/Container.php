@@ -2,7 +2,9 @@
 
 namespace Acme\Support\Contract;
 
-interface Container
+use League\Container\ContainerInterface;
+
+interface Container extends ContainerInterface
 {
 
 }
