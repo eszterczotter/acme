@@ -7,6 +7,11 @@ class Container implements \Acme\Support\Contract\Container
 
     private static $instance;
 
+    public static function instance()
+    {
+        return static::$instance ?: static::$instance = new Container(new \League\Container\Container());
+    }
+
     /**
      * Add a definition to the container
      *
@@ -136,10 +141,5 @@ class Container implements \Acme\Support\Contract\Container
     public function isInServiceProvider($alias)
     {
         // TODO: Implement isInServiceProvider() method.
-    }
-
-    public static function instance()
-    {
-        return static::$instance ?: static::$instance = new Container(new \League\Container\Container());
     }
 }
