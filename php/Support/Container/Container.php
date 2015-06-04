@@ -4,6 +4,9 @@ namespace Acme\Support\Container;
 
 class Container implements \Acme\Support\Contract\Container
 {
+
+    private static $instance;
+
     /**
      * Add a definition to the container
      *
@@ -137,8 +140,6 @@ class Container implements \Acme\Support\Contract\Container
 
     public static function instance()
     {
-        $instance = new Container(new \League\Container\Container());
-
-        return $instance;
+        return static::$instance ?: static::$instance = new Container(new \League\Container\Container());
     }
 }

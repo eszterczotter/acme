@@ -16,4 +16,9 @@ class ContainerSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Acme\Support\Contract\Container');
     }
+
+    function it_is_a_singleton()
+    {
+        $this->instance()->shouldBe($this);
+    }
 }
