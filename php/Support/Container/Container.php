@@ -2,19 +2,22 @@
 
 namespace Acme\Support\Container;
 
+use League\Container\Container as LeagueContainer;
+use League\Container\ContainerInterface;
+
 class Container implements \Acme\Support\Contract\Container
 {
 
     private static $instance;
     /**
-     * @var \League\Container\ContainerInterface
+     * @var ContainerInterface
      */
     private $container;
 
     /**
      * Container constructor.
      */
-    private function __construct(\League\Container\ContainerInterface $container)
+    private function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -22,7 +25,7 @@ class Container implements \Acme\Support\Contract\Container
     public static function instance()
     {
         if (!static::$instance) {
-            static::$instance = new static(new \League\Container\Container());
+            static::$instance = new static(new LeagueContainer());
         }
 
         static::$instance->singleton('container', static::$instance);
@@ -38,22 +41,22 @@ class Container implements \Acme\Support\Contract\Container
      * @param string $alias
      * @param mixed $concrete
      * @param boolean $singleton
-     * @return \League\Container\Definition\DefinitionInterface|\League\Container\ContainerInterface
+     * @return \League\Container\Definition\DefinitionInterface|ContainerInterface
      */
     public function add($alias, $concrete = null, $singleton = false)
     {
-        // TODO: Implement add() method.
+        return $this->container->add($alias, $concrete, $singleton);
     }
 
     /**
      * Adds a service provider to the container
      *
      * @param  string|\League\Container\ServiceProvider $provider
-     * @return \League\Container\ContainerInterface
+     * @return ContainerInterface
      */
     public function addServiceProvider($provider)
     {
-        // TODO: Implement addServiceProvider() method.
+        return $this->container->addServiceProvider($provider);
     }
 
     /**
@@ -61,7 +64,7 @@ class Container implements \Acme\Support\Contract\Container
      *
      * @param  string $alias
      * @param  mixed $concrete
-     * @return \League\Container\Definition\DefinitionInterface|\League\Container\ContainerInterface
+     * @return \League\Container\Definition\DefinitionInterface|ContainerInterface
      */
     public function singleton($alias, $concrete = null)
     {
@@ -78,7 +81,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function inflector($type, callable $callback = null)
     {
-        // TODO: Implement inflector() method.
+        return $this->container->inflector($type, $callback);
     }
 
     /**
@@ -90,7 +93,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function invokable($alias, callable $concrete = null)
     {
-        // TODO: Implement invokable() method.
+        return $this->container->invokable($alias, $concrete);
     }
 
     /**
@@ -103,7 +106,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function extend($alias)
     {
-        // TODO: Implement extend() method.
+        return $this->container->extend($alias);
     }
 
     /**
@@ -127,7 +130,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function call($alias, array $args = [])
     {
-        // TODO: Implement call() method.
+        return $this->container->call($alias, $args);
     }
 
     /**
@@ -138,7 +141,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function isRegistered($alias)
     {
-        // TODO: Implement isRegistered() method.
+        return $this->container->isRegistered($alias);
     }
 
     /**
@@ -149,7 +152,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function isSingleton($alias)
     {
-        // TODO: Implement isSingleton() method.
+        return $this->container->isSingleton($alias);
     }
 
     /**
@@ -160,6 +163,6 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function isInServiceProvider($alias)
     {
-        // TODO: Implement isInServiceProvider() method.
+        return $this->container->isInServiceProvider($alias);
     }
 }

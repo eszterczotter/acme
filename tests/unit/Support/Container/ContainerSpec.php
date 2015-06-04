@@ -26,4 +26,5 @@ class ContainerSpec extends ObjectBehavior
     {
         $this->get('container')->shouldBe($this);
     }
+    
 }
