@@ -21,4 +21,9 @@ class ContainerSpec extends ObjectBehavior
     {
         $this->instance()->shouldBe($this);
     }
+
+    function it_gets_itself()
+    {
+        $this->get('container')->shouldBe($this);
+    }
 }

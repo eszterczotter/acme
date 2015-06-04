@@ -6,11 +6,31 @@ class Container implements \Acme\Support\Contract\Container
 {
 
     private static $instance;
+    /**
+     * @var \League\Container\ContainerInterface
+     */
+    private $container;
+
+    /**
+     * Container constructor.
+     */
+    private function __construct(\League\Container\ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
 
     public static function instance()
     {
-        return static::$instance ?: static::$instance = new Container(new \League\Container\Container());
+        if (!static::$instance) {
+            static::$instance = new static(new \League\Container\Container());
+        }
+
+        static::$instance->singleton('container', static::$instance);
+
+        return static::$instance;
     }
+
+
 
     /**
      * Add a definition to the container
@@ -45,7 +65,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function singleton($alias, $concrete = null)
     {
-        // TODO: Implement singleton() method.
+        return $this->container->singleton($alias, $concrete);
     }
 
     /**
@@ -95,7 +115,7 @@ class Container implements \Acme\Support\Contract\Container
      */
     public function get($alias, array $args = [])
     {
-        // TODO: Implement get() method.
+        return $this->container->get($alias, $args);
     }
 
     /**
