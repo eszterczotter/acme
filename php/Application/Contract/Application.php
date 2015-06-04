@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Support\Contract;
+namespace Acme\Application\Contract;
 
 interface Application
 {

@@ -2,13 +2,13 @@
 
 namespace Acme\Application;
 
-class Application implements \Acme\Support\Contract\Application
+class Application implements Contract\Application
 {
     /**
      * Create an application of the appropriate type.
      *
      * @param $basePath
-     * @return \Acme\Support\Contract\Application
+     * @return \Acme\Application\Contract\Application
      */
     public static function create($basePath)
     {
