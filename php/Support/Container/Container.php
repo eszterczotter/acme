@@ -2,6 +2,6 @@
 
 namespace Acme\Support\Container;
 
-class Container
+class Container implements \Acme\Support\Contract\Container
 {
 }

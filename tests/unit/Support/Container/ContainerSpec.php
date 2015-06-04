@@ -9,6 +9,6 @@ class ContainerSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Container\Container');
+        $this->shouldHaveType('Acme\Support\Contract\Container');
     }
 }
