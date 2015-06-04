@@ -134,4 +134,11 @@ class Container implements \Acme\Support\Contract\Container
     {
         // TODO: Implement isInServiceProvider() method.
     }
+
+    public static function instance()
+    {
+        $instance = new Container(new \League\Container\Container());
+
+        return $instance;
+    }
 }
