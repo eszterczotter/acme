@@ -2,6 +2,8 @@
 
 namespace Acme\Application;
 
+use Acme\Support\Container\Container;
+
 class Application implements Contract\Application
 {
     /**
@@ -27,5 +29,10 @@ class Application implements Contract\Application
     public function bootstrap()
     {
         // TODO: Implement bootstrap() method.
+    }
+
+    public function container()
+    {
+        return Container::instance();
     }
 }
