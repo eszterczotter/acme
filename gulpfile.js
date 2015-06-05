@@ -15,6 +15,12 @@
         '!vendor/**/*.js'
     ];
 
+    var versionFiles = [
+        '**/*',
+        '!vendor/**/*',
+        '!node_modules/**/*'
+    ];
+
     var packageJson = {};
 
     $.gulp.task('default', ['lint:js', 'integration'], function(){
@@ -120,16 +126,39 @@
 
             bump = bump.toLowerCase();
 
+            if(segments.indexOf(bump) === -1) {
+
+                return bump;
+
+            }
+
+            var level = 3;
+
             return version
                 .split('.')
                 .map(function(segment){return parseInt(segment, 10);})
-                .map(function(value, segment){return value + (segments[segment] === bump );})
+                .map(function(value, segment){
+                    if(segments[segment] === bump){
+                        level = segment;
+                        return value + 1;
+                    }else if(level < segment){
+                        return 0;
+                    }else {
+                        return value;
+                    }
+                })
                 .join('.');
         }
 
         var bump = $.args.v || 'patch';
 
-        var newVersion = bumpVersion(packageJson.version, bump);
+        var oldVersion = packageJson.version;
+
+        var newVersion = bumpVersion(oldVersion, bump);
+
+        $.gulp.src(versionFiles)
+            .pipe($.replace(new RegExp(oldVersion, 'g'), newVersion))
+            .pipe($.save());
 
         $.util.log('The project was updated to version ' + newVersion);
     });

@@ -12,5 +12,7 @@
     exports.phpspec = require('gulp-phpspec');
     exports.args = require('minimist')(process.argv.slice(2));
     exports.readPackage = require('read-package-json');
+    exports.replace = require('gulp-replace');
+    exports.save = require('gulp-savefile');
 
 }());
