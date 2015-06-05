@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "argparse": "^1.0.2",
     "gulp": "^3.8.11",
     "gulp-codeception": "^0.5.0",
     "gulp-connect-php": "0.0.5",
