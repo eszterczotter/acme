@@ -156,11 +156,16 @@
 
         var newVersion = bumpVersion(oldVersion, bump);
 
+        packageJson.version = newVersion;
+
         $.gulp.src(versionFiles)
             .pipe($.replace(new RegExp(oldVersion, 'g'), newVersion))
-            .pipe($.save());
+            .pipe($.save())
+            .on('error', function(){
+                fail('We could not update the version to ' + newVersion);
+            });
 
-        $.util.log('The project was updated to version ' + newVersion);
+        pass('The project was updated to version ' + newVersion);
     });
 
     function fail(messages){
