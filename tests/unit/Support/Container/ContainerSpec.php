@@ -26,5 +26,10 @@ class ContainerSpec extends ObjectBehavior
     {
         $this->get('container')->shouldBe($this);
     }
-    
+
+    function it_gets_back_what_we_add()
+    {
+        $this->add('something', 5);
+        $this->get('something')->shouldBe(5);
+    }
 }
