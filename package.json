@@ -1,4 +1,7 @@
 {
+  "name": "lilybelle-acme",
+  "version": "0.0.0",
+  "repository": "https://github.com/lilybelle/acme.git",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-codeception": "^0.5.0",

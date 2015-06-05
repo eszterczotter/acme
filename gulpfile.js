@@ -15,6 +15,8 @@
         '!vendor/**/*.js'
     ];
 
+    var packageJson = {};
+
     $.gulp.task('default', ['lint:js', 'integration'], function(){
 
         return $.php.closeServer(function(){
@@ -73,7 +75,7 @@
 
     });
 
-    $.gulp.task('lint:js', function(){
+    $.gulp.task('lint:js', ['json:package'], function(){
 
         return $.gulp.src(jsFiles)
             .pipe($.jshint(new $.JsHintOptions('node')))
@@ -93,10 +95,43 @@
         });
     });
 
-    $.gulp.task('bump', function(){
+    $.gulp.task('json:package', function(callback){
+
+        $.readPackage('package.json', $.util.log, true, function(error, data){
+
+            if(error){
+                fail(error);
+            }
+
+            if(!data.version){
+                fail('No version is specified.');
+            }
+
+            packageJson = data;
+
+            callback();
+        });
+
+    });
+
+    $.gulp.task('bump', ['json:package'], function(){
+        function bumpVersion(version, bump){
+            var segments = ['major', 'minor', 'patch'];
+
+            bump = bump.toLowerCase();
+
+            return version
+                .split('.')
+                .map(function(segment){return parseInt(segment, 10);})
+                .map(function(value, segment){return value + (segments[segment] === bump );})
+                .join('.');
+        }
+
         var bump = $.args.v || 'patch';
 
-        console.log(bump);
+        var newVersion = bumpVersion(packageJson.version, bump);
+
+        $.util.log('The project was updated to version ' + newVersion);
     });
 
     function fail(messages){

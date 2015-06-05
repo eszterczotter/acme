@@ -11,5 +11,6 @@
     exports.php = require('gulp-connect-php');
     exports.phpspec = require('gulp-phpspec');
     exports.args = require('minimist')(process.argv.slice(2));
+    exports.readPackage = require('read-package-json');
 
 }());
