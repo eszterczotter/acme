@@ -28,7 +28,7 @@ class Application implements Contract\Application
 
     public function bootstrap()
     {
-        // TODO: Implement bootstrap() method.
+        $this->container()->singleton('app', $this);
     }
 
     public function container()

@@ -17,4 +17,11 @@ class ApplicationSpec extends ObjectBehavior
     {
         $this->container()->shouldBe(Container::instance());
     }
+
+    function it_binds_itself_to_the_container_at_bootstrap()
+    {
+        $this->bootstrap();
+
+        $this->container()->get('app')->shouldBe($this);
+    }
 }
