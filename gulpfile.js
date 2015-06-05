@@ -93,6 +93,12 @@
         });
     });
 
+    $.gulp.task('bump', function(){
+        var bump = $.args.v || 'patch';
+
+        console.log(bump);
+    });
+
     function fail(messages){
 
         return $.php.closeServer(function(){

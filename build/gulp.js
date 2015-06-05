@@ -10,5 +10,6 @@
     exports.phpcs = require('gulp-phpcs');
     exports.php = require('gulp-connect-php');
     exports.phpspec = require('gulp-phpspec');
+    exports.args = require('minimist')(process.argv.slice(2));
 
 }());
