@@ -120,7 +120,7 @@
 
     });
 
-    $.gulp.task('bump', ['json:package'], function(){
+    $.gulp.task('bump', ['git:status', 'json:package'], function(){
         function bumpVersion(version, bump){
             var segments = ['major', 'minor', 'patch'];
 
@@ -165,15 +165,36 @@
                 fail('We could not update the version to ' + newVersion);
             });
 
-        pass('The project was updated to version ' + newVersion);
+        pass(['Version bumped to ' + newVersion, 'Use git diff to check']);
     });
 
-    function fail(messages){
+    $.gulp.task('git:status', function(callback){
+        $.git.status({quiet: true}, function(error, stdout){
+            if(error){
+                fail('Could not run `git status`', false);
+            }
 
-        return $.php.closeServer(function(){
+            if(stdout.indexOf('nothing to commit') === -1) {
+                fail('Git status is not clean!', false);
+            }
+
+            callback();
+        });
+    });
+
+    function fail(messages, closeServer){
+
+        closeServer = closeServer === undefined ? true : closeServer;
+
+        if(closeServer) {
+            return $.php.closeServer(function(){
+                log(messages, 'red');
+                process.exit(1);
+            });
+        }else{
             log(messages, 'red');
             process.exit(1);
-        });
+        }
 
     }
 
