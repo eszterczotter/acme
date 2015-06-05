@@ -2,6 +2,7 @@
 
 namespace unit\Acme\Support\Container;
 
+use Acme\Support\Container\Container;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -31,5 +32,12 @@ class ContainerSpec extends ObjectBehavior
     {
         $this->add('something', 5);
         $this->get('something')->shouldBe(5);
+    }
+
+    function it_gets_back_singletons()
+    {
+        $this->singleton('something', function(){ return rand(1,1000); });
+
+        $this->get('something')->shouldBe($this->get('something'));
     }
 }
