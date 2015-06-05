@@ -16,6 +16,7 @@ class Container implements \Acme\Support\Contract\Container
 
     /**
      * Container constructor.
+     * @param ContainerInterface $container
      */
     private function __construct(ContainerInterface $container)
     {
