@@ -21,13 +21,6 @@ interface Console
     public function execute();
 
     /**
-     * Get the handler of a command.
-     *
-     * @param string $command
-     */
-    public function handler($command);
-
-    /**
      * Set the name.
      *
      * @param string $name
