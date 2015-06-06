@@ -27,11 +27,12 @@ class LeagueContainer extends Container
      * @param string $alias
      * @param mixed $concrete
      * @param boolean $singleton
-     * @return \League\Container\Definition\DefinitionInterface|ContainerInterface
+     * @return Container
      */
     public function add($alias, $concrete = null, $singleton = false)
     {
-        return $this->container->add($alias, $concrete, $singleton);
+        $this->container->add($alias, $concrete, $singleton);
+        return $this;
     }
 
     /**
