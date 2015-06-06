@@ -9,6 +9,6 @@ class ConsoleServiceProviderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Console\ConsoleServiceProvider');
+        $this->shouldHaveType('Acme\Support\Container\ServiceProvider');
     }
 }
