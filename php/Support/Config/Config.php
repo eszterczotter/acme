@@ -2,6 +2,7 @@
 
 namespace Acme\Support\Config;
 
-class NoodleConfig implements Config
+interface Config
 {
+
 }

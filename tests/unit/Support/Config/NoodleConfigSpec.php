@@ -9,6 +9,6 @@ class NoodleConfigSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Config\NoodleConfig');
+        $this->shouldHaveType('Acme\Support\Config\Config');
     }
 }
