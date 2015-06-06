@@ -32,6 +32,7 @@ class LeagueServiceProvider extends LServiceProvider
      */
     public function register()
     {
-        $this->getContainer()->call([$this->provider, 'register']);
+        $this->container->call([$this->provider, 'setContainer']);
+        $this->container->call([$this->provider, 'register']);
     }
 }

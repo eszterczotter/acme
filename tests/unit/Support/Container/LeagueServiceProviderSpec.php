@@ -23,6 +23,7 @@ class LeagueServiceProviderSpec extends ObjectBehavior
     function it_registers_our_service_provider(
         ServiceProvider $provider, ContainerInterface $leagueContainer)
     {
+        $leagueContainer->call([$provider, 'setContainer'])->shouldBeCalled();
         $leagueContainer->call([$provider, 'register'])->shouldBeCalled();
         $provider->services()->shouldBeCalled();
         $this->register();

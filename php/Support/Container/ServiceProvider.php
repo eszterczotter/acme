@@ -2,21 +2,36 @@
 
 namespace Acme\Support\Container;
 
-interface ServiceProvider
+abstract class ServiceProvider
 {
+
+    /**
+     * A Service Container
+     *
+     * @var Container
+     */
+    protected $container;
 
     /**
      * Register the services of this provider.
      *
-     * @param Container $container
      * @return void
      */
-    public function register(Container $container);
+    abstract public function register();
 
     /**
      * The services of this provider.
      *
      * @return array
      */
-    public function services();
+    abstract public function services();
+
+    /**
+     * @param Container $container
+     * @return mixed
+     */
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+    }
 }
