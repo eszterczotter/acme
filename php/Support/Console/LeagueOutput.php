@@ -54,7 +54,7 @@ class LeagueOutput implements Output
      */
     public function info($text)
     {
-        $this->climate->info();
+        $this->climate->info($text);
         return $this;
     }
 
@@ -90,7 +90,7 @@ class LeagueOutput implements Output
      */
     public function columns($data)
     {
-        $this->climate->json($data);
+        $this->climate->columns($data);
         return $this;
     }
 

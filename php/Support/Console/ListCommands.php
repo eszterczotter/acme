@@ -5,6 +5,21 @@ namespace Acme\Support\Console;
 class ListCommands implements Command
 {
     /**
+     * The commands to list.
+     *
+     * @var array
+     */
+    private $commands;
+
+    /**
+     * @param array $commands
+     */
+    public function __construct(array $commands)
+    {
+        $this->commands = $commands;
+    }
+
+    /**
      * Handle the command.
      *
      * @param Input $input
@@ -13,7 +28,7 @@ class ListCommands implements Command
      */
     public function handle(Input $input, Output $output)
     {
-        // TODO: Implement handle() method.
+        $output->info('Acme 0.0.0');
     }
 
     /**

@@ -13,10 +13,4 @@ class ConsoleServiceProviderSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Acme\Support\Container\ServiceProvider');
     }
-
-    function it_configures_the_console(Console $console, Config $config)
-    {
-        $config->get('console.commands')->willReturn([]);
-        $this->configure($console, $config);
-    }
 }
