@@ -29,7 +29,7 @@ class LeagueContainer extends Container
      * @param mixed $concrete
      * @return Container
      */
-    public function add($alias, $concrete = null)
+    public function add($alias, $concrete)
     {
         $this->container->add($alias, $concrete, false);
         return $this;
@@ -84,16 +84,5 @@ class LeagueContainer extends Container
     public function call($alias, array $args = [])
     {
         return $this->container->call($alias, $args);
-    }
-
-    /**
-     * Check if an item is registered in the container.
-     *
-     * @param  string $alias
-     * @return boolean
-     */
-    public function exists($alias)
-    {
-        return $this->container->isRegistered($alias);
     }
 }

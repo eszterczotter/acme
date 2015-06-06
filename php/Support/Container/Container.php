@@ -27,7 +27,7 @@ abstract class Container
      * @param mixed $concrete
      * @return Container
      */
-    abstract public function add($alias, $concrete = null);
+    abstract public function add($alias, $concrete);
 
     /**
      * Get an item from the container.
@@ -65,12 +65,4 @@ abstract class Container
      * @return mixed
      */
     abstract public function call($alias, array $args = []);
-
-    /**
-     * Check if an item is registered in the container.
-     *
-     * @param  string $alias
-     * @return boolean
-     */
-    abstract public function exists($alias);
 }
