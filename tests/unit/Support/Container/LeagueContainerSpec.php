@@ -16,4 +16,16 @@ class LeagueContainerSpec extends ObjectBehavior
     {
         $this->get('container')->shouldBe($this);
     }
+
+    function it_adds_stuff_fluently($concrete)
+    {
+        $this->add('something', $concrete)->shouldBe($this);
+    }
+
+    function it_gets_what_was_added($concrete)
+    {
+        $alias = 'something';
+        $this->add($alias, $concrete);
+        $this->get($alias)->shouldReturn($concrete);
+    }
 }
