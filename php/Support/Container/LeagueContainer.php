@@ -97,4 +97,9 @@ class LeagueContainer extends Container
         $leagueProvider = new LeagueServiceProvider(new $provider, $this->container);
         $this->container->addServiceProvider($leagueProvider);
     }
+
+    public function alias($alias, $name)
+    {
+        $this->container->add($alias, $this->container->get($name));
+    }
 }

@@ -72,5 +72,15 @@ abstract class Container
      * @param  string $provider
      * @return Container
      */
+
     abstract public function register($provider);
+
+    /**
+     * Register an alias for a service.
+     *
+     * @param string $alias
+     * @param string $name
+     * @return Container
+     */
+    abstract public function alias($alias, $name);
 }

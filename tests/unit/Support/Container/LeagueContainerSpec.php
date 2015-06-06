@@ -61,4 +61,13 @@ class LeagueContainerSpec extends ObjectBehavior
         $this->get($alias)->shouldBe($concrete);
 
     }
+
+    function it_aliases_things($concrete)
+    {
+        $longAlias = 'something';
+        $shortAlias = 'sg';
+        $this->add($longAlias, $concrete);
+        $this->alias($shortAlias, $longAlias);
+        $this->get($shortAlias)->shouldReturn($concrete);
+    }
 }
