@@ -2,7 +2,7 @@
 
 namespace Acme\Application;
 
-use Acme\Support\Container\LeagueContainer;
+use Acme\Support\Container\Container;
 
 class Application implements Contract\Application
 {
@@ -33,6 +33,6 @@ class Application implements Contract\Application
 
     public function container()
     {
-        return LeagueContainer::instance();
+        return Container::instance();
     }
 }
