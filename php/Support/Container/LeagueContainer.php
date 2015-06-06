@@ -19,6 +19,7 @@ class LeagueContainer extends Container
     {
         $this->container = new LContainer();
         $this->singleton('container', $this);
+        $this->singleton(Container::class, $this);
     }
 
     /**

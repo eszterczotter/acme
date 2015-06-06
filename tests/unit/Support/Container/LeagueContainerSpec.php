@@ -15,6 +15,7 @@ class LeagueContainerSpec extends ObjectBehavior
     function it_gets_itself()
     {
         $this->get('container')->shouldBe($this);
+        $this->get('Acme\Support\Container\Container')->shouldBe($this);
     }
 
     function it_adds_stuff_fluently($concrete)
