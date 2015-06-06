@@ -10,4 +10,12 @@ interface Application
     public function run();
 
     public function bootstrap();
+
+    public function basePath();
+
+    public function bootPath();
+
+    public function configPath();
+
+    public function publicPath();
 }

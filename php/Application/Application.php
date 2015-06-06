@@ -47,11 +47,31 @@ class Application implements Contract\Application
     {
         $container = $this->container();
 
-        require $this->path . "/bootstrap/services.php";
+        require $this->path . '/bootstrap/services.php';
     }
 
     public function container()
     {
         return Container::instance();
+    }
+
+    public function basePath()
+    {
+        return $this->path;
+    }
+
+    public function bootPath()
+    {
+        return $this->basePath() . '/bootstrap';
+    }
+
+    public function configPath()
+    {
+        return $this->basePath() . '/config';
+    }
+
+    public function publicPath()
+    {
+        return $this->basePath() . '/public';
     }
 }
