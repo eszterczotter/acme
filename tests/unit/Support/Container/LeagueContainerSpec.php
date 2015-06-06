@@ -29,4 +29,13 @@ class LeagueContainerSpec extends ObjectBehavior
         $this->add($alias, $concrete);
         $this->get($alias)->shouldReturn($concrete);
     }
+
+    function it_allows_singletons()
+    {
+        $alias = 'something';
+        $this->singleton($alias, function(){
+            return new \stdClass();
+        });
+        $this->get($alias)->shouldBe($this->get($alias));
+    }
 }

@@ -25,10 +25,9 @@ abstract class Container
      *
      * @param string $alias
      * @param mixed $concrete
-     * @param boolean $singleton
      * @return Container
      */
-    abstract public function add($alias, $concrete = null, $singleton = false);
+    abstract public function add($alias, $concrete = null);
 
     /**
      * Get an item from the container.
