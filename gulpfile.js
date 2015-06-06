@@ -120,7 +120,7 @@
 
     });
 
-    $.gulp.task('bump', ['git:status', 'json:package'], function(){
+    $.gulp.task('version', ['git:status', 'json:package'], function(){
 
         // usage:
         // -v patch, minor, major, prepatch, preminor, premajor, prerelease
