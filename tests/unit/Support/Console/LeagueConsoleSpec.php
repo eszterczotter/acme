@@ -9,6 +9,6 @@ class LeagueConsoleSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Console\LeagueConsole');
+        $this->shouldHaveType('Acme\Support\Console\Console');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Acme\Support\Console;
 
-class LeagueConsole implements Console
+interface Console
 {
+
 }
