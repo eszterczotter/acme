@@ -76,8 +76,8 @@
             function (error) {
                 if (error) {
                     fail(['PHP Lint failed', error.message]);
-            }
-        });
+                }
+            });
 
     });
 
@@ -122,11 +122,17 @@
 
     $.gulp.task('bump', ['git:status', 'json:package'], function(){
 
-        var bump = $.args.v || 'patch';
+        // usage:
+        // -v patch, minor, major, prepatch, preminor, premajor, prerelease
+        // -p alpha beta rc (if pre)
+
+        var v = $.args.v || 'patch';
+
+        var p = v.indexOf('pre') !== -1 ? $.args.p || 'beta' : undefined;
 
         var oldVersion = packageJson.version;
 
-        var newVersion = $.semver.inc(oldVersion, bump);
+        var newVersion = $.semver.inc(oldVersion, v, p);
 
         packageJson.version = newVersion;
 
