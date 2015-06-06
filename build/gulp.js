@@ -15,5 +15,6 @@
     exports.replace = require('gulp-replace');
     exports.save = require('gulp-savefile');
     exports.git = require('gulp-git');
+    exports.semver = require('semver');
 
 }());

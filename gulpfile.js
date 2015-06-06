@@ -121,40 +121,12 @@
     });
 
     $.gulp.task('bump', ['git:status', 'json:package'], function(){
-        function bumpVersion(version, bump){
-            var segments = ['major', 'minor', 'patch'];
-
-            bump = bump.toLowerCase();
-
-            if(segments.indexOf(bump) === -1) {
-
-                return bump;
-
-            }
-
-            var level = 3;
-
-            return version
-                .split('.')
-                .map(function(segment){return parseInt(segment, 10);})
-                .map(function(value, segment){
-                    if(segments[segment] === bump){
-                        level = segment;
-                        return value + 1;
-                    }else if(level < segment){
-                        return 0;
-                    }else {
-                        return value;
-                    }
-                })
-                .join('.');
-        }
 
         var bump = $.args.v || 'patch';
 
         var oldVersion = packageJson.version;
 
-        var newVersion = bumpVersion(oldVersion, bump);
+        var newVersion = $.semver.inc(oldVersion, bump);
 
         packageJson.version = newVersion;
 
