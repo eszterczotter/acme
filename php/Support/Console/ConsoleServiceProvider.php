@@ -17,6 +17,7 @@ class ConsoleServiceProvider implements ServiceProvider
     public function register(Container $container)
     {
         $container->singleton('Acme\Support\Console\Console', new LeagueContainer());
+        $container->alias('console', 'Acme\Support\Console\Console');
     }
 
     /**
