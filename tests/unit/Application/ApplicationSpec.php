@@ -2,7 +2,7 @@
 
 namespace unit\Acme\Application;
 
-use Acme\Support\Container\Container;
+use Acme\Support\Container\LeagueContainer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -15,7 +15,7 @@ class ApplicationSpec extends ObjectBehavior
 
     function it_has_container()
     {
-        $this->container()->shouldBe(Container::instance());
+        $this->container()->shouldBe(LeagueContainer::instance());
     }
 
     function it_binds_itself_to_the_container_at_bootstrap()

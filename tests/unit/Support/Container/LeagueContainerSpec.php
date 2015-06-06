@@ -5,7 +5,7 @@ namespace unit\Acme\Support\Container;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class ContainerSpec extends ObjectBehavior
+class LeagueContainerSpec extends ObjectBehavior
 {
     function let()
     {

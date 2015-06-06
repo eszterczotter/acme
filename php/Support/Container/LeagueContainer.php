@@ -2,10 +2,10 @@
 
 namespace Acme\Support\Container;
 
-use League\Container\Container as LeagueContainer;
+use League\Container\Container;
 use League\Container\ContainerInterface;
 
-class Container implements \Acme\Support\Contract\Container
+class LeagueContainer implements \Acme\Support\Contract\Container
 {
 
     private static $instance;
@@ -26,7 +26,7 @@ class Container implements \Acme\Support\Contract\Container
     public static function instance()
     {
         if (!static::$instance) {
-            static::$instance = new static(new LeagueContainer());
+            static::$instance = new static(new Container());
         }
 
         static::$instance->singleton('container', static::$instance);
