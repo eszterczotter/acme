@@ -47,6 +47,9 @@ class Application implements Contract\Application
     {
         $container = $this->container();
 
+        $container->singleton(Contract\Application::class, $this);
+        $container->alias('app', Contract\Application::class);
+
         require $this->path . '/bootstrap/services.php';
     }
 
