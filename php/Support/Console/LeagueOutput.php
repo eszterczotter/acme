@@ -6,6 +6,9 @@ use League\CLImate\CLImate;
 
 class LeagueOutput implements Output
 {
+
+    private $bars = [];
+
     /**
      * @var CLImate
      */
@@ -27,7 +30,8 @@ class LeagueOutput implements Output
      */
     public function error($text)
     {
-        // TODO: Implement error() method.
+        $this->climate->error($text);
+        return $this;
     }
 
     /**
@@ -38,7 +42,8 @@ class LeagueOutput implements Output
      */
     public function comment($text)
     {
-        // TODO: Implement comment() method.
+        $this->climate->comment($text);
+        return $this;
     }
 
     /**
@@ -49,7 +54,8 @@ class LeagueOutput implements Output
      */
     public function info($text)
     {
-        // TODO: Implement info() method.
+        $this->climate->info();
+        return $this;
     }
 
     /**
@@ -60,7 +66,8 @@ class LeagueOutput implements Output
      */
     public function table($data)
     {
-        // TODO: Implement table() method.
+        $this->climate->table($data);
+        return $this;
     }
 
     /**
@@ -71,7 +78,8 @@ class LeagueOutput implements Output
      */
     public function json($data)
     {
-        // TODO: Implement json() method.
+        $this->climate->json($data);
+        return $this;
     }
 
     /**
@@ -82,7 +90,8 @@ class LeagueOutput implements Output
      */
     public function columns($data)
     {
-        // TODO: Implement columns() method.
+        $this->climate->json($data);
+        return $this;
     }
 
     /**
@@ -94,7 +103,8 @@ class LeagueOutput implements Output
      */
     public function hr($pattern, $length)
     {
-        // TODO: Implement hr() method.
+        $this->climate->border($pattern, $length);
+        return $this;
     }
 
     /**
@@ -106,7 +116,12 @@ class LeagueOutput implements Output
      */
     public function progress($bar, $progress)
     {
-        // TODO: Implement progress() method.
+        if (array_key_exists($bar, $this->bars)) {
+            $this->bars[$bar]->current($progress);
+        } else {
+            $this->bars[$bar] = $this->climate->progress(100);
+        }
+        return $this;
     }
 
     /**
@@ -117,7 +132,8 @@ class LeagueOutput implements Output
      */
     public function dump($variable)
     {
-        // TODO: Implement dump() method.
+        $this->climate->dump($variable);
+        return $this;
     }
 
     /**
@@ -127,7 +143,8 @@ class LeagueOutput implements Output
      */
     public function br()
     {
-        // TODO: Implement br() method.
+        $this->climate->br();
+        return $this;
     }
 
     /**
@@ -137,7 +154,8 @@ class LeagueOutput implements Output
      */
     public function tab()
     {
-        // TODO: Implement tab() method.
+        $this->climate->tab();
+        return $this;
     }
 
     /**
@@ -147,6 +165,7 @@ class LeagueOutput implements Output
      */
     public function clear()
     {
-        // TODO: Implement clear() method.
+        $this->climate->clear();
+        return $this;
     }
 }

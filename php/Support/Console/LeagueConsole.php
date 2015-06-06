@@ -69,14 +69,19 @@ class LeagueConsole implements Console
 
         $arguments = $argv;
 
-        $script = array_shift($arguments);
+        array_shift($arguments);
 
         if (count($arguments) === 0) {
-            $this->climate->usage();
+            $handler = new ListCommands($this->commands);
+            $this->climate->arguments->add($handler->arguments());
+            $this->climate->arguments->parse();
+            $input = new LeagueInput($this->climate);
+            $output = new LeagueOutput($this->climate);
+            $handler->handle($input, $output);
         } else {
             $handler = $this->handler($arguments[0]);
             $this->climate->arguments->add($handler->arguments());
-            $this->climate->argumetns->parse($arguments);
+            $this->climate->arguments->parse($arguments);
             $input = new LeagueInput($this->climate);
             $output = new LeagueOutput($this->climate);
             $handler->handle($input, $output);

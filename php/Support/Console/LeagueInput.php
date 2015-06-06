@@ -26,7 +26,7 @@ class LeagueInput implements Input
      */
     public function arguments()
     {
-        // TODO: Implement arguments() method.
+        return $this->climate->arguments->all();
     }
 
     /**
@@ -36,7 +36,7 @@ class LeagueInput implements Input
      */
     public function argument($name)
     {
-        // TODO: Implement argument() method.
+        return $this->climate->arguments->get($name);
     }
 
     /**
@@ -48,7 +48,11 @@ class LeagueInput implements Input
      */
     public function input($question, $default = null)
     {
-        // TODO: Implement input() method.
+        $input = $this->climate->input($question);
+
+        $input->defaultTo($default);
+
+        return $input->prompt();
     }
 
     /**
@@ -59,7 +63,9 @@ class LeagueInput implements Input
      */
     public function confirm($question)
     {
-        // TODO: Implement confirm() method.
+        $input = $this->climate->confirm($question);
+
+        return $input->confirmed();
     }
 
     /**
@@ -70,7 +76,9 @@ class LeagueInput implements Input
      */
     public function password($question)
     {
-        // TODO: Implement password() method.
+        $input = $this->climate->password($question);
+
+        return $input->prompt();
     }
 
     /**
@@ -82,7 +90,9 @@ class LeagueInput implements Input
      */
     public function select($question, $options)
     {
-        // TODO: Implement select() method.
+        $input = $this->climate->checkboxes($question, $options);
+
+        return $input->prompt();
     }
 
     /**
@@ -94,6 +104,8 @@ class LeagueInput implements Input
      */
     public function choose($question, $options)
     {
-        // TODO: Implement choose() method.
+        $input = $this->climate->radio($question, $options);
+
+        return $input->prompt();
     }
 }

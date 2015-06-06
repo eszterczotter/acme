@@ -23,6 +23,6 @@ class ListCommands implements Command
      */
     public function arguments()
     {
-        // TODO: Implement arguments() method.
+        return [];
     }
 }
