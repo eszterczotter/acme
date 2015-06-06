@@ -9,6 +9,6 @@ class LeagueServiceProviderSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Container\LeagueServiceProvider');
+        $this->shouldHaveType('League\Container\ServiceProvider');
     }
 }
