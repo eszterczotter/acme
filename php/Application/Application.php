@@ -7,6 +7,21 @@ use Acme\Support\Container\Container;
 class Application implements Contract\Application
 {
     /**
+     * @var
+     */
+    private $path;
+
+    /**
+     * The root directory.
+     *
+     * @param string $path
+     */
+    public function __construct($path)
+    {
+        $this->path = $path;
+    }
+
+    /**
      * Create an application of the appropriate type.
      *
      * @param $basePath
