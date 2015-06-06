@@ -63,5 +63,6 @@ class LeagueConsole implements Console
         if (array_key_exists($command, $this->commands)) {
             return $this->container->get($this->commands[$command]);
         }
+        return null;
     }
 }
