@@ -7,7 +7,7 @@ use League\CLImate\CLImate;
 
 class LeagueConsole implements Console
 {
-    private $description = '';
+    private $name = '';
 
     private $version = '';
 
@@ -63,7 +63,7 @@ class LeagueConsole implements Console
      */
     public function execute()
     {
-        $this->climate->description('Acme version 0.0.0');
+        $this->climate->description($this->name . ' version ' . $this->version);
 
         global $argv;
 
@@ -100,5 +100,27 @@ class LeagueConsole implements Console
             return $this->container->get($this->commands[$command]);
         }
         return null;
+    }
+
+    /**
+     * Set the name.
+     *
+     * @param string $name
+     * @return Console
+     */
+    public function name($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Set the version.
+     *
+     * @param string $version
+     * @return Console
+     */
+    public function version($version)
+    {
+        $this->version = $version;
     }
 }

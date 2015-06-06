@@ -26,4 +26,20 @@ interface Console
      * @param string $command
      */
     public function handler($command);
+
+    /**
+     * Set the name.
+     *
+     * @param string $name
+     * @return Console
+     */
+    public function name($name);
+
+    /**
+     * Set the version.
+     *
+     * @param string $version
+     * @return Console
+     */
+    public function version($version);
 }
