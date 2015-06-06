@@ -2,7 +2,6 @@
 
 namespace unit\Acme\Support\Container;
 
-use Acme\Support\Container\ServiceProvider;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use stdClass;
