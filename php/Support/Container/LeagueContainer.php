@@ -7,8 +7,6 @@ use League\Container\ContainerInterface;
 
 class LeagueContainer extends Container
 {
-
-    private static $instance;
     /**
      * @var ContainerInterface
      */
@@ -16,25 +14,12 @@ class LeagueContainer extends Container
 
     /**
      * Container constructor.
-     * @param ContainerInterface $container
      */
-    private function __construct(ContainerInterface $container)
+    public function __construct()
     {
-        $this->container = $container;
+        $this->container = new LContainer();
+        $this->singleton('container', $this);
     }
-
-    public static function instance()
-    {
-        if (!static::$instance) {
-            static::$instance = new static(new LContainer());
-        }
-
-        static::$instance->singleton('container', static::$instance);
-
-        return static::$instance;
-    }
-
-
 
     /**
      * Add a definition to the container
