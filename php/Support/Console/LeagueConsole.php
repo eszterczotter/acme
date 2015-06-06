@@ -15,4 +15,14 @@ class LeagueConsole implements Console
     {
         // TODO: Implement command() method.
     }
+
+    /**
+     * Execute script.
+     *
+     * @return void
+     */
+    public function execute()
+    {
+        // TODO: Implement execute() method.
+    }
 }
