@@ -19,4 +19,11 @@ interface Console
      * @return void
      */
     public function execute();
+
+    /**
+     * Get the handler of a command.
+     *
+     * @param string $command
+     */
+    public function handler($command);
 }
