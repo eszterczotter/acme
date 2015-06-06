@@ -4,6 +4,7 @@ namespace unit\Acme\Support\Container;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use stdClass;
 
 class LeagueContainerSpec extends ObjectBehavior
 {
@@ -34,8 +35,15 @@ class LeagueContainerSpec extends ObjectBehavior
     {
         $alias = 'something';
         $this->singleton($alias, function(){
-            return new \stdClass();
+            return new stdClass();
         });
         $this->get($alias)->shouldBe($this->get($alias));
+    }
+
+    function it_calls_callables()
+    {
+        $this->call(function(stdClass $class){
+           return get_class($class);
+        })->shouldReturn(stdClass::class);
     }
 }
