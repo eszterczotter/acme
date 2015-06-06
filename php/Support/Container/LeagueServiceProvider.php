@@ -2,6 +2,7 @@
 
 namespace Acme\Support\Container;
 
+use League\Container\ContainerInterface;
 use League\Container\ServiceProvider as LServiceProvider;
 
 class LeagueServiceProvider extends LServiceProvider
@@ -15,10 +16,11 @@ class LeagueServiceProvider extends LServiceProvider
 
     protected $provides;
 
-    public function __construct(ServiceProvider $provider)
+    public function __construct(ServiceProvider $provider, ContainerInterface $container)
     {
         $this->provider = $provider;
         $this->provides = $provider->services();
+        $this->container = $container;
     }
 
     /**
@@ -30,6 +32,7 @@ class LeagueServiceProvider extends LServiceProvider
      */
     public function register()
     {
-        $this->provider->register();
+        $container = $this->getContainer()->get('container');
+        $this->provider->register($container);
     }
 }

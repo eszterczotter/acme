@@ -8,9 +8,10 @@ abstract class ServiceProvider
     /**
      * Register the services of this provider.
      *
+     * @param Container $container
      * @return void
      */
-    abstract public function register();
+    abstract public function register(Container $container);
 
     /**
      * The services of this provider.

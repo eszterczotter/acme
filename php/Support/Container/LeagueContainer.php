@@ -94,6 +94,7 @@ class LeagueContainer extends Container
      */
     public function register($provider)
     {
-        $this->container->addServiceProvider(new LeagueServiceProvider(new $provider));
+        $leagueProvider = new LeagueServiceProvider(new $provider, $this->container);
+        $this->container->addServiceProvider($leagueProvider);
     }
 }
