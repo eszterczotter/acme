@@ -2,7 +2,6 @@
 
 namespace Acme\Support\Console;
 
-use Acme\Support\Container\LeagueContainer;
 use Acme\Support\Container\ServiceProvider;
 
 class ConsoleServiceProvider extends ServiceProvider
@@ -14,7 +13,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(Console::class, new LeagueContainer());
+        $this->container->singleton(Console::class, new LeagueConsole());
         $this->container->alias('console', Console::class);
     }
 
