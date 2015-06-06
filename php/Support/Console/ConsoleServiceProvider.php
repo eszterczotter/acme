@@ -3,6 +3,7 @@
 namespace Acme\Support\Console;
 
 use Acme\Support\Container\Container;
+use Acme\Support\Container\LeagueContainer;
 use Acme\Support\Container\ServiceProvider;
 
 class ConsoleServiceProvider implements ServiceProvider
@@ -15,7 +16,7 @@ class ConsoleServiceProvider implements ServiceProvider
      */
     public function register(Container $container)
     {
-        // TODO: Implement register() method.
+        $container->singleton('Acme\Support\Console\Console', new LeagueContainer());
     }
 
     /**
