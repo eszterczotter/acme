@@ -25,38 +25,38 @@ class LeagueContainer extends Container
     /**
      * Add a definition to the container.
      *
-     * @param string $alias
+     * @param string $name
      * @param mixed $concrete
      * @return Container
      */
-    public function add($alias, $concrete)
+    public function add($name, $concrete)
     {
-        $this->container->add($alias, $concrete, false);
+        $this->container->add($name, $concrete, false);
         return $this;
     }
 
     /**
      * Get an item from the container.
      *
-     * @param  string $alias
+     * @param  string $name
      * @param  array $args
      * @return mixed
      */
-    public function get($alias, array $args = [])
+    public function get($name, array $args = [])
     {
-        return $this->container->get($alias, $args);
+        return $this->container->get($name, $args);
     }
 
     /**
      * Add a singleton definition to the container.
      *
-     * @param  string $alias
+     * @param  string $name
      * @param  mixed $concrete
      * @return Container
      */
-    public function singleton($alias, $concrete = null)
+    public function singleton($name, $concrete = null)
     {
-        $this->container->singleton($alias, $concrete);
+        $this->container->singleton($name, $concrete);
         return $this;
     }
 
@@ -77,13 +77,13 @@ class LeagueContainer extends Container
     /**
      * Invoke.
      *
-     * @param  mixed $alias
+     * @param  mixed $name
      * @param  array $args
      * @return mixed
      */
-    public function call($alias, array $args = [])
+    public function call($name, array $args = [])
     {
-        return $this->container->call($alias, $args);
+        return $this->container->call($name, $args);
     }
 
     /**
@@ -98,8 +98,16 @@ class LeagueContainer extends Container
         $this->container->addServiceProvider($leagueProvider);
     }
 
+    /**
+     * Register an alias for a service.
+     *
+     * @param string $alias
+     * @param string $name
+     * @return Container
+     */
     public function alias($alias, $name)
     {
         $this->container->add($alias, $this->container->get($name));
+        return $this;
     }
 }

@@ -23,29 +23,29 @@ abstract class Container
     /**
      * Add a definition to the container
      *
-     * @param string $alias
+     * @param string $name
      * @param mixed $concrete
      * @return Container
      */
-    abstract public function add($alias, $concrete);
+    abstract public function add($name, $concrete);
 
     /**
      * Get an item from the container.
      *
-     * @param  string $alias
+     * @param  string $name
      * @param  array $args
      * @return mixed
      */
-    abstract public function get($alias, array $args = []);
+    abstract public function get($name, array $args = []);
 
     /**
      * Add a singleton definition to the container.
      *
-     * @param  string $alias
+     * @param  string $name
      * @param  mixed $concrete
      * @return Container
      */
-    abstract public function singleton($alias, $concrete = null);
+    abstract public function singleton($name, $concrete = null);
 
     /**
      * Allows for methods to be invoked on any object
@@ -60,11 +60,11 @@ abstract class Container
     /**
      * Invoke.
      *
-     * @param  mixed $alias
+     * @param  mixed $name
      * @param  array $args
      * @return mixed
      */
-    abstract public function call($alias, array $args = []);
+    abstract public function call($name, array $args = []);
 
     /**
      * Registers a service provider to the container.
