@@ -3,15 +3,13 @@
 namespace Acme\Support\Console;
 
 use Acme\Support\Container\Container;
+use League\CLImate\CLImate;
 
 class LeagueConsole implements Console
 {
-    /**
-     * The Container.
-     *
-     * @var Container
-     */
-    private $container;
+    private $description = '';
+
+    private $version = '';
 
     /**
      * The console commands.
@@ -21,13 +19,29 @@ class LeagueConsole implements Console
     private $commands = [];
 
     /**
+     * The Container instance.
+     *
+     * @var Container
+     */
+    private $container;
+
+    /**
+     * The Climate instane.
+     *
+     * @var CLImate
+     */
+    private $climate;
+
+    /**
      * Create a new console.
      *
      * @param Container $container
+     * @param CLImate $climate
      */
-    public function __construct(Container $container)
+    public function __construct(Container $container, CLImate $climate)
     {
         $this->container = $container;
+        $this->climate = $climate;
     }
 
     /**
@@ -49,7 +63,24 @@ class LeagueConsole implements Console
      */
     public function execute()
     {
-        // TODO: Implement execute() method.
+        $this->climate->description('Acme version 0.0.0');
+
+        global $argv;
+
+        $arguments = $argv;
+
+        $script = array_shift($arguments);
+
+        if (count($arguments) === 0) {
+            $this->climate->usage();
+        } else {
+            $handler = $this->handler($arguments[0]);
+            $this->climate->arguments->add($handler->arguments());
+            $this->climate->argumetns->parse($arguments);
+            $input = new LeagueInput($this->climate);
+            $output = new LeagueOutput($this->climate);
+            $handler->handle($input, $output);
+        }
     }
 
     /**

@@ -4,14 +4,15 @@ namespace unit\Acme\Support\Console;
 
 use Acme\Support\Console\Command;
 use Acme\Support\Container\Container;
+use League\CLImate\CLImate;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class LeagueConsoleSpec extends ObjectBehavior
 {
-    function let(Container $container)
+    function let(Container $container, CLImate $climate)
     {
-        $this->beConstructedWith($container);
+        $this->beConstructedWith($container, $climate);
     }
 
     function it_is_initializable()
