@@ -45,7 +45,9 @@ class Application implements Contract\Application
 
     public function bootstrap()
     {
-        $this->container()->singleton('app', $this);
+        $container = $this->container();
+
+        require $this->path . "/bootstrap/services.php";
     }
 
     public function container()

@@ -22,11 +22,4 @@ class ApplicationSpec extends ObjectBehavior
     {
         $this->container()->shouldBe(LeagueContainer::instance());
     }
-
-    function it_binds_itself_to_the_container_at_bootstrap()
-    {
-        $this->bootstrap();
-
-        $this->container()->get('app')->shouldBe($this);
-    }
 }
