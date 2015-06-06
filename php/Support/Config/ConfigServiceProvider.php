@@ -13,7 +13,9 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        $application = $this->container->get('app');
+        $this->container->singleton(Config::class, new NoodleConfig($application->getConfigPath()));
+        $this->container->alias('config', Config::class);
     }
 
     /**
