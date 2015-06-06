@@ -143,7 +143,9 @@
                 fail('We could not update the version to ' + newVersion);
             });
 
-        pass(['Version bumped to ' + newVersion, 'Use git diff to check']);
+        pass('Version bumped to ' + newVersion);
+        log('Use git diff to check', 'yellow');
+        $.git.status();
     });
 
     $.gulp.task('git:status', function(callback){
