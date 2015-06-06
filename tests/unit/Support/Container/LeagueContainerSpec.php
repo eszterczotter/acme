@@ -46,4 +46,18 @@ class LeagueContainerSpec extends ObjectBehavior
            return get_class($class);
         })->shouldReturn(stdClass::class);
     }
+
+    function it_adds_inflectors($concrete)
+    {
+        $alias = 'message';
+
+        $this->inflector(stdClass::class, function() use ($alias, $concrete) {
+            $this->add($alias, $concrete);
+        });
+
+        $this->get(stdClass::class);
+
+        $this->get($alias)->shouldBe($concrete);
+
+    }
 }

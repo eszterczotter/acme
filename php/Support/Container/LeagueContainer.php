@@ -65,10 +65,10 @@ class LeagueContainer extends Container
      * that is resolved of the type provided.
      *
      * @param  string $type
-     * @param  callable $callback
+     * @param \Closure $callback
      * @return Container
      */
-    public function inflector($type, callable $callback = null)
+    public function inflector($type, \Closure $callback)
     {
         $this->container->inflector($type, $callback);
         return $this;

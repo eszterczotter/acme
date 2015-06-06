@@ -52,10 +52,10 @@ abstract class Container
      * that is resolved of the type provided.
      *
      * @param  string $type
-     * @param  callable $callback
+     * @param \Closure $callback
      * @return Container
      */
-    abstract public function inflector($type, callable $callback = null);
+    abstract public function inflector($type, \Closure $callback);
 
     /**
      * Invoke.
