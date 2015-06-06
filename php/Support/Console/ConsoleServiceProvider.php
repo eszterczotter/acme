@@ -30,4 +30,14 @@ class ConsoleServiceProvider extends ServiceProvider
             'Acme\Support\Console\Console',
         ];
     }
+
+    /**
+     * Configure the console.
+     *
+     * @param Console $console
+     */
+    public function configure(Console $console)
+    {
+        // TODO: write logic here
+    }
 }
