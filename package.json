@@ -3,19 +3,19 @@
   "version": "0.0.0",
   "repository": "https://github.com/lilybelle/acme.git",
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-codeception": "^0.5.0",
-    "gulp-connect-php": "0.0.5",
-    "gulp-git": "^1.2.4",
-    "gulp-jshint": "^1.11.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-phpcs": "^0.6.0",
-    "gulp-phpspec": "^0.5.3",
-    "gulp-replace": "^0.5.3",
-    "gulp-savefile": "^0.1.1",
-    "gulp-util": "^3.0.5",
-    "minimist": "^1.1.1",
-    "phplint": "^1.5.0",
-    "read-package-json": "^2.0.0"
+    "gulp": "^3.8",
+    "gulp-codeception": "^0.5",
+    "gulp-connect-php": "0.0",
+    "gulp-git": "^1.2",
+    "gulp-jshint": "^1.11",
+    "gulp-notify": "^2.2",
+    "gulp-phpcs": "^0.6",
+    "gulp-phpspec": "^0.5",
+    "gulp-replace": "^0.5",
+    "gulp-savefile": "^0.1",
+    "gulp-util": "^3.0",
+    "minimist": "^1.1",
+    "phplint": "^1.5",
+    "read-package-json": "^2.0"
   }
 }
