@@ -8,7 +8,7 @@ use stdClass;
 
 class LeagueContainerSpec extends ObjectBehavior
 {
-    function it_is_initializable($alias)
+    function it_is_initializable()
     {
         $this->shouldHaveType('Acme\Support\Container\Container');
     }
