@@ -6,6 +6,8 @@ class Application extends \Acme\Application\Http\Application
 {
     public function run()
     {
-        echo "<html><body>0.0.0</body></html>";
+        $config = $this->container()->get('config');
+        echo "<html><body>" . $config->get('app.name') .
+             " " . $config->get('app.version')  . "</body></html>";
     }
 }

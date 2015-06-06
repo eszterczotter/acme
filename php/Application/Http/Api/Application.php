@@ -6,6 +6,8 @@ class Application extends \Acme\Application\Http\Application
 {
     public function run()
     {
-        echo 'API 0.0.0';
+        $config = $this->container()->get('config');
+        echo "API" .
+             " " . $config->get('app.version');
     }
 }

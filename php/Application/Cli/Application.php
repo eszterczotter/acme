@@ -8,7 +8,8 @@ class Application extends \Acme\Application\Application
 {
     public function run()
     {
-        $console = new Console("Acme", "0.0.0");
+        $config = $this->container()->get('config');
+        $console = new Console($config->get('app.name'), $config->get('app.version'));
         $console->run();
     }
 }
