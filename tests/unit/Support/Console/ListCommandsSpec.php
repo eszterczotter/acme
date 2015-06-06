@@ -9,6 +9,6 @@ class ListCommandsSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Console\ListCommands');
+        $this->shouldHaveType('Acme\Support\Console\Command');
     }
 }
