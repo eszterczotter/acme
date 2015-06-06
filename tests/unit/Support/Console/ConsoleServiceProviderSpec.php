@@ -2,6 +2,7 @@
 
 namespace unit\Acme\Support\Console;
 
+use Acme\Support\Config\Config;
 use Acme\Support\Console\Console;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -13,8 +14,9 @@ class ConsoleServiceProviderSpec extends ObjectBehavior
         $this->shouldHaveType('Acme\Support\Container\ServiceProvider');
     }
 
-    function it_configures_the_console(Console $console)
+    function it_configures_the_console(Console $console, Config $config)
     {
-        $this->configure($console);
+        $config->get('console.commands')->willReturn([]);
+        $this->configure($console, $config);
     }
 }

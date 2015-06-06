@@ -2,6 +2,7 @@
 
 namespace Acme\Support\Console;
 
+use Acme\Support\Config\Config;
 use Acme\Support\Container\ServiceProvider;
 
 class ConsoleServiceProvider extends ServiceProvider
@@ -15,6 +16,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $this->container->singleton(Console::class, new LeagueConsole());
         $this->container->alias('console', Console::class);
+        $this->container->inflector(Console::class, [$this, 'configure']);
     }
 
     /**
@@ -34,9 +36,13 @@ class ConsoleServiceProvider extends ServiceProvider
      * Configure the console.
      *
      * @param Console $console
+     * @param Config $config
      */
-    public function configure(Console $console)
+    public function configure(Console $console, Config $config)
     {
-        // TODO: write logic here
+        $commands = $config->get('console.commands');
+        foreach ($commands as $command) {
+            $console->command($command);
+        }
     }
 }
