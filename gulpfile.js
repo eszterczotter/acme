@@ -128,7 +128,7 @@
 
         var v = $.args.v || 'patch';
 
-        var p = v.indexOf('pre') !== -1 ? $.args.p || 'beta' : undefined;
+        var p = $.args.p || 'beta';
 
         var oldVersion = packageJson.version;
 
