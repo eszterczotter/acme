@@ -2,7 +2,6 @@
 
 namespace unit\Acme\Support\Container;
 
-use Acme\Support\Container\Container;
 use Acme\Support\Container\ServiceProvider;
 use League\Container\ContainerInterface;
 use PhpSpec\ObjectBehavior;
@@ -22,11 +21,10 @@ class LeagueServiceProviderSpec extends ObjectBehavior
     }
 
     function it_registers_our_service_provider(
-        ServiceProvider $provider, ContainerInterface $leagueContainer, Container $container)
+        ServiceProvider $provider, ContainerInterface $leagueContainer)
     {
-        $leagueContainer->get('container')->willReturn($container);
+        $leagueContainer->call([$provider, 'register'])->shouldBeCalled();
         $provider->services()->shouldBeCalled();
-        $provider->register($container)->shouldBeCalled();
         $this->register();
     }
 }
