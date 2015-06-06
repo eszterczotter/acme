@@ -145,7 +145,6 @@
 
         pass('Version bumped to ' + newVersion);
         log('Use git diff to check', 'yellow');
-        $.git.status();
     });
 
     $.gulp.task('git:status', function(callback){
