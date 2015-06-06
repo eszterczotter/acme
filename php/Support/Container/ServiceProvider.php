@@ -2,7 +2,7 @@
 
 namespace Acme\Support\Container;
 
-abstract class ServiceProvider
+interface ServiceProvider
 {
 
     /**
@@ -11,12 +11,12 @@ abstract class ServiceProvider
      * @param Container $container
      * @return void
      */
-    abstract public function register(Container $container);
+    public function register(Container $container);
 
     /**
      * The services of this provider.
      *
      * @return array
      */
-    abstract public function services();
+    public function services();
 }
