@@ -18,7 +18,7 @@ class PresenceCest
     public function shellShouldBePresent(IntegratorTester $I)
     {
         $I->runShellCommand("./acme");
-        $I->seeInShellOutput("Console Application");
+        $I->seeInShellOutput("Acme");
         $I->seeInShellOutput('0.0.0');
     }
 }
