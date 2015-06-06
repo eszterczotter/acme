@@ -36,6 +36,18 @@ class LeagueContainer extends Container
     }
 
     /**
+     * Get an item from the container.
+     *
+     * @param  string $alias
+     * @param  array $args
+     * @return mixed
+     */
+    public function get($alias, array $args = [])
+    {
+        return $this->container->get($alias, $args);
+    }
+
+    /**
      * Add a singleton definition to the container.
      *
      * @param  string $alias
@@ -60,18 +72,6 @@ class LeagueContainer extends Container
     {
         $this->container->inflector($type, $callback);
         return $this;
-    }
-
-    /**
-     * Get an item from the container.
-     *
-     * @param  string $alias
-     * @param  array $args
-     * @return mixed
-     */
-    public function get($alias, array $args = [])
-    {
-        return $this->container->get($alias, $args);
     }
 
     /**

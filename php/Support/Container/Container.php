@@ -31,6 +31,15 @@ abstract class Container
     abstract public function add($alias, $concrete = null, $singleton = false);
 
     /**
+     * Get an item from the container.
+     *
+     * @param  string $alias
+     * @param  array $args
+     * @return mixed
+     */
+    abstract public function get($alias, array $args = []);
+
+    /**
      * Add a singleton definition to the container.
      *
      * @param  string $alias
@@ -48,15 +57,6 @@ abstract class Container
      * @return Container
      */
     abstract public function inflector($type, callable $callback = null);
-
-    /**
-     * Get an item from the container.
-     *
-     * @param  string $alias
-     * @param  array $args
-     * @return mixed
-     */
-    abstract public function get($alias, array $args = []);
 
     /**
      * Invoke.
