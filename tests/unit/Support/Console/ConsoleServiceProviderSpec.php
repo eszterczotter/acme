@@ -11,4 +11,12 @@ class ConsoleServiceProviderSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Acme\Support\Container\ServiceProvider');
     }
+
+    function it_provides_the_console()
+    {
+        $this->services()->shouldReturn([
+            'console',
+            'Acme\Support\Console\Console',
+        ]);
+    }
 }

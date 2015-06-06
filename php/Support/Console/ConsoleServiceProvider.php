@@ -25,6 +25,9 @@ class ConsoleServiceProvider implements ServiceProvider
      */
     public function services()
     {
-        // TODO: Implement services() method.
+        return [
+            'console',
+            'Acme\Support\Console\Console',
+        ];
     }
 }
