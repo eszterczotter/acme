@@ -7,9 +7,11 @@ use Acme\Support\Container\Container;
 class Application implements Contract\Application
 {
     /**
-     * @var
+     * The path to our application.
+     *
+     * @var string
      */
-    private $path;
+    protected $path;
 
     /**
      * The root directory.
