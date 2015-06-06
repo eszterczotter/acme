@@ -85,4 +85,15 @@ class LeagueContainer extends Container
     {
         return $this->container->call($alias, $args);
     }
+
+    /**
+     * Registers a service provider to the container.
+     *
+     * @param  string $provider
+     * @return Container
+     */
+    public function register($provider)
+    {
+        $this->container->addServiceProvider(new LeagueServiceProvider(new $provider));
+    }
 }

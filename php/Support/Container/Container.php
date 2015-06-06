@@ -65,4 +65,12 @@ abstract class Container
      * @return mixed
      */
     abstract public function call($alias, array $args = []);
+
+    /**
+     * Registers a service provider to the container.
+     *
+     * @param  string $provider
+     * @return Container
+     */
+    abstract public function register($provider);
 }
