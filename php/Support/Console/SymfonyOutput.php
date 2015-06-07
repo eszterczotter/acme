@@ -2,8 +2,37 @@
 
 namespace Acme\Support\Console;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 class SymfonyOutput implements Output
 {
+    /**
+     * The Symfony Input interface.
+     *
+     * @var InputInterface
+     */
+    private $input;
+
+    /**
+     * The Symfony Output interface.
+     *
+     * @var OutputInterface
+     */
+    private $output;
+
+    /**
+     * Create new Symfony Output.
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
+    public function __construct(InputInterface $input, OutputInterface $output)
+    {
+        $this->input = $input;
+        $this->output = $output;
+    }
+
     /**
      * Output error.
      *
@@ -12,7 +41,7 @@ class SymfonyOutput implements Output
      */
     public function error($text)
     {
-        // TODO: Implement error() method.
+        $this->output->writeln("<error>" . $text . "</error>");
     }
 
     /**
@@ -23,7 +52,7 @@ class SymfonyOutput implements Output
      */
     public function comment($text)
     {
-        // TODO: Implement comment() method.
+        $this->output->writeln("<comment>" . $text . "</comment>");
     }
 
     /**
@@ -34,7 +63,7 @@ class SymfonyOutput implements Output
      */
     public function info($text)
     {
-        // TODO: Implement info() method.
+        $this->output->writeln("<info>" . $text . "</info>");
     }
 
     /**
