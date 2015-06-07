@@ -32,6 +32,7 @@ class BooBooDebug implements Debug, HandlerInterface
     {
         $this->container = $container;
         $this->booboo = $booboo;
+        $this->booboo->pushHandler($this);
     }
 
     /**
@@ -49,9 +50,9 @@ class BooBooDebug implements Debug, HandlerInterface
      *
      * @return void
      */
-    public function run()
+    public function register()
     {
-        // TODO: Implement run() method.
+        $this->booboo->register();
     }
 
     /**

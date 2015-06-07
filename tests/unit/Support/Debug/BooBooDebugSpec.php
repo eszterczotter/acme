@@ -14,9 +14,16 @@ class BooBooDebugSpec extends ObjectBehavior
         $this->beConstructedWith($container, $booboo);
     }
 
-    function it_is_initializable()
+    function it_is_initializable(Runner $booboo)
     {
         $this->shouldHaveType('Acme\Support\Debug\Debug');
         $this->shouldHaveType('League\BooBoo\Handler\HandlerInterface');
+        $booboo->pushHandler($this)->shouldHaveBeenCalled();
+    }
+
+    function it_runs(Runner $booboo)
+    {
+        $this->register();
+        $booboo->register()->shouldHaveBeenCalled();
     }
 }

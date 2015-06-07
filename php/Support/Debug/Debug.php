@@ -9,7 +9,7 @@ interface Debug
      *
      * @return void
      */
-    public function run();
+    public function register();
 
     /**
      * Add a handler to the debugger.
