@@ -8,7 +8,9 @@ class Application extends \Acme\Application\Application
     {
         $config = $this->container()->get('config');
         $console = $this->container()->get('console');
-        $console->name($config->get('app.name'))
+
+        $console
+            ->name($config->get('app.name'))
             ->version($config->get('app.version'))
             ->execute();
     }
