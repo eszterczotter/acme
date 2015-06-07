@@ -9,6 +9,6 @@ class DotEnvironmentSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Environment\DotEnvEnvironment');
+        $this->shouldHaveType('Acme\Support\Environment\Environment');
     }
 }

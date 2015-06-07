@@ -2,6 +2,7 @@
 
 namespace Acme\Support\Environment;
 
-class DotEnvironment implements Environment
+interface Environment
 {
+
 }
