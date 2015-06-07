@@ -98,13 +98,12 @@ class SymfonyCommand extends SCommand
 
     private function mergeWithDefaults($settings)
     {
-        $settings = array_merge([
+        return array_merge([
             'required' => true,
             'description' => '',
             'default' => null,
             'shortcut' => null,
             'flag' => false,
         ], $settings);
-        return $settings;
     }
 }
