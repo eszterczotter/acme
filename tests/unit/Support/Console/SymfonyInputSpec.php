@@ -27,4 +27,13 @@ class SymfonyInputSpec extends ObjectBehavior
         $this->arguments()->shouldBe(['options', 'arguments']);
     }
 
+    function it_gets_an_argument(InputInterface $input)
+    {
+        $name = 'name';
+        $value = 'value';
+        $input->getArgument($name)->willReturn(null)->shouldBeCalled();
+        $input->getOption($name)->willReturn($value)->shouldBeCalled();
+        $this->argument($name)->shouldBe($value);
+    }
+
 }
