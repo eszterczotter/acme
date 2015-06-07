@@ -2,8 +2,28 @@
 
 namespace Acme\Support\Log;
 
+use Monolog\Logger;
+
 class MonoLogger implements Log
 {
+
+    /**
+     * The Monolog instance.
+     *
+     * @var Logger
+     */
+    private $logger;
+
+    /**
+     * Create a new MonoLogger.
+     *
+     * @param Logger $logger
+     */
+    public function __construct(Logger $logger)
+    {
+        $this->logger = $logger;
+    }
+
     /**
      * System is unusable.
      *
