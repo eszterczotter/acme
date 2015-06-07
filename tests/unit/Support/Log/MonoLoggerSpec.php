@@ -10,5 +10,6 @@ class MonoLoggerSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Acme\Support\Log\Log');
+        $this->shouldHaveType('Psr\Log\LoggerInterface');
     }
 }

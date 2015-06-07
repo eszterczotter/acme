@@ -2,7 +2,9 @@
 
 namespace Acme\Support\Log;
 
-interface Log
+use Psr\Log\LoggerInterface;
+
+interface Log extends LoggerInterface
 {
 
 }
