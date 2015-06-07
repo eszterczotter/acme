@@ -11,7 +11,7 @@ interface Command
      * @param Output $output
      * @return void
      */
-    public function handle(Input $input, Output $output);
+    public function execute(Input $input, Output $output);
 
     /**
      * Configure the arguments.

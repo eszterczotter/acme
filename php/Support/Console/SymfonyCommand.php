@@ -46,7 +46,7 @@ class SymfonyCommand extends SCommand
         $input = new SymfonyInput($input);
         $output = new SymfonyOutput($output);
 
-        $this->command->handle($input, $output);
+        $this->command->execute($input, $output);
 
     }
 

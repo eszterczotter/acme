@@ -8,13 +8,20 @@ class SymfonyConsole implements Console
 {
 
     /**
+     * The Symfony Application instance.
+     *
      * @var Application
      */
-    private $console;
+    private $application;
 
-    public function __construct(Application $console)
+    /**
+     * Create a new Symfony Console.
+     *
+     * @param Application $application
+     */
+    public function __construct(Application $application)
     {
-        $this->console = $console;
+        $this->application = $application;
     }
 
     /**
@@ -25,7 +32,7 @@ class SymfonyConsole implements Console
      */
     public function command($command)
     {
-        $this->console->add(new SymfonyCommand($command));
+        $this->application->add(new SymfonyCommand($command));
         return $this;
     }
 
@@ -36,7 +43,7 @@ class SymfonyConsole implements Console
      */
     public function execute()
     {
-        $this->console->run();
+        $this->application->run();
     }
 
     /**
@@ -47,7 +54,7 @@ class SymfonyConsole implements Console
      */
     public function name($name)
     {
-        $this->console->setName($name);
+        $this->application->setName($name);
         return $this;
     }
 
@@ -59,7 +66,7 @@ class SymfonyConsole implements Console
      */
     public function version($version)
     {
-        $this->console->setVersion($version);
+        $this->application->setVersion($version);
         return $this;
     }
 }
