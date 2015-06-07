@@ -53,6 +53,12 @@ class Application implements Contract\Application
         require $this->path . '/bootstrap/services.php';
     }
 
+    public function debug()
+    {
+        $debug = $this->container()->get('debug');
+        $debug->register();
+    }
+
     public function container()
     {
         return Container::instance();
@@ -85,6 +91,6 @@ class Application implements Contract\Application
 
     public function logPath()
     {
-        return $this->storagePath() . '/log';
+        return $this->storagePath() . '/logs';
     }
 }

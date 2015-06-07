@@ -11,6 +11,8 @@ interface Application
 
     public function bootstrap();
 
+    public function debug();
+
     public function basePath();
 
     public function bootPath();

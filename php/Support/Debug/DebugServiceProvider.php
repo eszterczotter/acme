@@ -3,6 +3,9 @@
 namespace Acme\Support\Debug;
 
 use Acme\Support\Container\ServiceProvider;
+use League\BooBoo\Formatter\NullFormatter;
+use League\BooBoo\Handler\LogHandler;
+use League\BooBoo\Runner;
 
 class DebugServiceProvider extends ServiceProvider
 {
@@ -13,8 +16,19 @@ class DebugServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(Debug::class, BooBooDebug::class);
+        $this->container->singleton(Debug::class, function () {
+
+            $booboo = new Runner();
+            $booboo->treatErrorsAsExceptions(true);
+            $booboo->pushFormatter(new NullFormatter());
+
+            $log = new LogHandler($this->container->get('log'));
+
+            return new BooBooDebug($this->container, $booboo, $log);
+        });
+
         $this->container->alias('debug', Debug::class);
+
         $this->container->inflector(Debug::class, [$this, 'configure']);
     }
 
