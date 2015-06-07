@@ -9,6 +9,6 @@ class SymfonyConsoleSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Console\SymfonyConsole');
+        $this->shouldHaveType('Acme\Support\Console\Console');
     }
 }
