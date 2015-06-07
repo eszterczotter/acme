@@ -9,7 +9,7 @@ interface Environment
 
     public function overload();
 
-    public function required($variable, $options = []);
+    public function required($variable, array $options = null);
 
     public function get($variable);
 }

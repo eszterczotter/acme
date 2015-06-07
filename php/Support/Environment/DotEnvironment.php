@@ -14,7 +14,7 @@ class DotEnvironment implements Environment
         // TODO: Implement overload() method.
     }
 
-    public function required($variable, $options = [])
+    public function required($variable, array $options = null)
     {
         // TODO: Implement required() method.
     }

@@ -13,7 +13,10 @@ class EnvironmentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        $app = $this->container->get('app');
+        $this->container->singleton(Environment::class, new DotEnvironment($app->basePath()));
+        $this->container->alias('env', Environment::class);
+        $this->container->inflector(Environment::class, [$this, 'configure']);
     }
 
     /**
@@ -27,5 +30,25 @@ class EnvironmentServiceProvider extends ServiceProvider
             Environment::class,
             'env',
         ];
+    }
+
+    public function configure(Environment $env)
+    {
+        $env->load();
+
+        $app = $this->container->get('app');
+
+        $environment = require $app->configPath() . "/environment.php";
+
+        foreach ($environment['environment'] as $variable => $options) {
+            if (is_int($variable)) {
+                $variable = $options;
+                $options = null;
+            }
+
+            $env->required($variable, $options);
+
+        }
+
     }
 }
