@@ -1,4 +1,7 @@
 {
+    "name": "lilybelle/acme",
+    "description": "Lilybelle's framework for Web applications.",
+    "license": "MIT",
     "require": {
         "php": "^5.5",
         "league/container": "^1.3",
