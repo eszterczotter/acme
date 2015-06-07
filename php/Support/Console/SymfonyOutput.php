@@ -2,6 +2,8 @@
 
 namespace Acme\Support\Console;
 
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -20,6 +22,13 @@ class SymfonyOutput implements Output
      * @var OutputInterface
      */
     private $output;
+
+    /**
+     * The progress bars.
+     *
+     * @var ProgressBar[]
+     */
+    private $bars;
 
     /**
      * Create new Symfony Output.
@@ -74,7 +83,10 @@ class SymfonyOutput implements Output
      */
     public function table($data)
     {
-        // TODO: Implement table() method.
+        $table = new Table($this->output);
+        $table->setHeaders(array_shift($data));
+        $table->setRows($data);
+        $table->render();
     }
 
     /**
@@ -85,30 +97,19 @@ class SymfonyOutput implements Output
      */
     public function json($data)
     {
-        // TODO: Implement json() method.
-    }
-
-    /**
-     * Output columns.
-     *
-     * @param string $data
-     * @return Output
-     */
-    public function columns($data)
-    {
-        // TODO: Implement columns() method.
+        $this->output->writeln(json_encode($data, JSON_PRETTY_PRINT));
     }
 
     /**
      * Output horizontal line.
      *
      * @param string $pattern
-     * @param integer $length
+     * @param integer $times
      * @return Output
      */
-    public function hr($pattern, $length)
+    public function hr($pattern, $times)
     {
-        // TODO: Implement hr() method.
+        $this->output->writeln(str_repeat($pattern, $times));
     }
 
     /**
@@ -120,7 +121,11 @@ class SymfonyOutput implements Output
      */
     public function progress($bar, $progress)
     {
-        // TODO: Implement progress() method.
+        if (! array_key_exists($bar, $this->bars)) {
+            $this->bars[$bar] = new ProgressBar($this->output, 100);
+        }
+
+        $this->bars[$bar]->setProgress($progress);
     }
 
     /**
@@ -131,7 +136,15 @@ class SymfonyOutput implements Output
      */
     public function dump($variable)
     {
-        // TODO: Implement dump() method.
+        ob_start();
+
+        var_dump($variable);
+
+        $dump = ob_get_contents();
+
+        ob_end_clean();
+
+        $this->output->writeln($dump);
     }
 
     /**
@@ -141,7 +154,7 @@ class SymfonyOutput implements Output
      */
     public function br()
     {
-        // TODO: Implement br() method.
+        $this->output->writeln('');
     }
 
     /**
@@ -152,15 +165,5 @@ class SymfonyOutput implements Output
     public function tab()
     {
         // TODO: Implement tab() method.
-    }
-
-    /**
-     * Clear output.
-     *
-     * @return Output
-     */
-    public function clear()
-    {
-        // TODO: Implement clear() method.
     }
 }

@@ -39,4 +39,25 @@ class SymfonyOutputSpec extends ObjectBehavior
         $output->writeln("<comment>" . $text . "</comment>")->shouldBeCalled();
         $this->comment($text);
     }
+
+    function it_writes_json(OutputInterface $output)
+    {
+        $data = ['what', 'will', 'this', 'become'];
+        $output->writeln(json_encode($data, JSON_PRETTY_PRINT))->shouldBeCalled();
+        $this->json($data);
+    }
+
+    function it_writes_a_horizontal_line(OutputInterface $output)
+    {
+        $pattern = '-=';
+        $times = 50;
+        $output->writeln(str_repeat($pattern, $times))->shouldBeCalled();
+        $this->hr($pattern, $times);
+    }
+
+    function it_writes_a_newline(OutputInterface $output)
+    {
+        $output->writeln('')->shouldBeCalled();
+        $this->br();
+    }
 }

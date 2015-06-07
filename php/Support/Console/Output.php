@@ -45,23 +45,15 @@ interface Output
      */
     public function json($data);
 
-    /**
-     * Output columns.
-     *
-     * @param string $data
-     * @return Output
-     */
-    public function columns($data);
-
 
     /**
      * Output horizontal line.
      *
      * @param string $pattern
-     * @param integer $length
+     * @param integer $times
      * @return Output
      */
-    public function hr($pattern, $length);
+    public function hr($pattern, $times);
 
     /**
      * Output table.
@@ -93,11 +85,4 @@ interface Output
      * @return Output
      */
     public function tab();
-
-    /**
-     * Clear output.
-     *
-     * @return Output
-     */
-    public function clear();
 }
