@@ -3,6 +3,7 @@
 namespace Acme\Support\Environment;
 
 use Acme\Support\Container\ServiceProvider;
+use Dotenv\Dotenv;
 
 class EnvironmentServiceProvider extends ServiceProvider
 {
@@ -14,8 +15,13 @@ class EnvironmentServiceProvider extends ServiceProvider
     public function register()
     {
         $app = $this->container->get('app');
-        $this->container->singleton(Environment::class, new DotEnvironment($app->basePath()));
+
+        $this->container->singleton(Environment::class, function () use ($app) {
+            return new DotEnvironment(new Dotenv($app->basePath()));
+        });
+
         $this->container->alias('env', Environment::class);
+
         $this->container->inflector(Environment::class, [$this, 'configure']);
     }
 
