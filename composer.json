@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "^2.0",
         "monolog/monolog": "^1.13",
         "league/booboo": "^1.0",
-        "psr/log": "^1.0"
+        "psr/log": "^1.0",
+        "nesbot/carbon": "^1.19"
     },
     "require-dev": {
         "behat/behat": "^3.0",
