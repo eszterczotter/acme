@@ -18,4 +18,8 @@ interface Application
     public function configPath();
 
     public function publicPath();
+
+    public function storagePath();
+
+    public function logPath();
 }

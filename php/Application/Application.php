@@ -77,4 +77,14 @@ class Application implements Contract\Application
     {
         return $this->basePath() . '/public';
     }
+
+    public function storagePath()
+    {
+        return $this->basePath() . '/storage';
+    }
+
+    public function logPath()
+    {
+        return $this->storagePath() . '/log';
+    }
 }
