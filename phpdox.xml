@@ -9,7 +9,7 @@
     <bootstrap />
 
     <!-- A phpDox project to process, you can have multiple projects in one config file -->
-    <project name="acme" source="${basedir}/php" workdir="${basedir}/build/phpdox">
+    <project name="acme" source="${basedir}/php" workdir="${basedir}/build/phpdox/xml">
         <!--  @name    - The name of the project -->
         <!--  @source  - The source directory of the application to process -->
         <!--  @workdir - The directory to store the xml data files in -->
@@ -78,12 +78,10 @@
                 -->
 
                 <!-- git vcs information -->
-                <!--
                 <source type="git">
                     <git binary="/usr/bin/git" />
                     <history enabled="true" limit="15" cache="${phpDox.project.workdir}/gitlog.xml" />
                 </source>
-                -->
 
                 <!-- PHP Code Sniffer findings -->
                 <!--
@@ -122,7 +120,7 @@
             <!-- An engine and thus build node can have additional configuration child nodes, please check the documentation for the engine to find out more -->
 
             <!--  default engine "html" -->
-            <build engine="html" enabled="true" output="">
+            <build engine="html" enabled="true" output="php">
                 <template dir="${phpDox.home}/templates/html" />
                 <file extension="xhtml" />
             </build>
