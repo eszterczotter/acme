@@ -10,6 +10,7 @@
     "gulp-jshint": "^1.11",
     "gulp-notify": "^2.2",
     "gulp-phpcs": "^0.6",
+    "gulp-phpdox": "^0.1.0",
     "gulp-phpspec": "^0.5",
     "gulp-replace": "^0.5",
     "gulp-savefile": "^0.1",
