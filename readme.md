@@ -1,6 +1,6 @@
 # Acme version 0.0.0
 
-Install dependencies:
+Dependencies:
 
 - nodejs
 - php5
@@ -8,10 +8,9 @@ Install dependencies:
 - php5-xsl
 - composer
 
-Install packages:
+To provision:
 
-- composer install
-- npm install
+- ./provision.sh
 
 To build:
 
