@@ -33,6 +33,7 @@ class BooBooDebug implements Debug, HandlerInterface
         $this->container = $container;
         $this->booboo = $booboo;
         $this->booboo->pushHandler($this);
+        $this->booboo->treatErrorsAsExceptions(true);
     }
 
     /**

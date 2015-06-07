@@ -19,9 +19,10 @@ class BooBooDebugSpec extends ObjectBehavior
         $this->shouldHaveType('Acme\Support\Debug\Debug');
         $this->shouldHaveType('League\BooBoo\Handler\HandlerInterface');
         $booboo->pushHandler($this)->shouldHaveBeenCalled();
+        $booboo->treatErrorsAsExceptions(true)->shouldHaveBeenCalled();
     }
 
-    function it_runs(Runner $booboo)
+    function it_registers_itself(Runner $booboo)
     {
         $this->register();
         $booboo->register()->shouldHaveBeenCalled();
