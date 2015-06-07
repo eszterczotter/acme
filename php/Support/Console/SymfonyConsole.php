@@ -26,6 +26,7 @@ class SymfonyConsole implements Console
     public function command($command)
     {
         $this->console->add(new SymfonyCommand($command));
+        return $this;
     }
 
     /**
