@@ -2,25 +2,48 @@
 
 namespace Acme\Support\Environment;
 
+use Dotenv\Dotenv;
+
 class DotEnvironment implements Environment
 {
+    /**
+     * The Dotenv instance.
+     *
+     * @var Dotenv
+     */
+    private $env;
+
+    /**
+     * Create a new Environment.
+     *
+     * @param Dotenv $env
+     */
+    public function __construct(Dotenv $env)
+    {
+        $this->env = $env;
+    }
+
     public function load()
     {
-        // TODO: Implement load() method.
+        $this->env->load();
     }
 
     public function overload()
     {
-        // TODO: Implement overload() method.
+        $this->env->overload();
     }
 
     public function required($variable, array $options = null)
     {
-        // TODO: Implement required() method.
+        $validator = $this->env->required($variable);
+
+        if (is_array($options)) {
+            $validator->allowedValues($options);
+        }
     }
 
     public function get($variable)
     {
-        // TODO: Implement get() method.
+        return getenv($variable);
     }
 }
