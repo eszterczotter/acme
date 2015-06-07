@@ -50,7 +50,11 @@ class Application implements Contract\Application
         $container->singleton(Contract\Application::class, $this);
         $container->alias('app', Contract\Application::class);
 
-        require $this->path . '/bootstrap/services.php';
+        $services = require $this->configPath() . '/services.php';
+
+        foreach ($services['services'] as $service) {
+            $container->register($service);
+        }
     }
 
     public function debug()
