@@ -2,9 +2,8 @@
 
 namespace Acme\Support\Console;
 
-use Acme\Support\Config\Config;
 use Acme\Support\Container\ServiceProvider;
-use League\CLImate\CLImate;
+use Symfony\Component\Console\Application;
 
 class ConsoleServiceProvider extends ServiceProvider
 {
@@ -15,7 +14,7 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(Console::class, new LeagueConsole($this->container, new CLImate()));
+        $this->container->singleton(Console::class, new SymfonyConsole(new Application()));
         $this->container->alias('console', Console::class);
         $this->container->inflector(Console::class, [$this, 'configure']);
     }
@@ -43,7 +42,8 @@ class ConsoleServiceProvider extends ServiceProvider
         $config = $this->container->get('config');
         $commands = $config->get('console.commands');
         foreach ($commands as $command => $handler) {
-            $console->command($command, $handler);
+            $command = $this->container->get($command);
+            $console->command($command);
         }
     }
 }

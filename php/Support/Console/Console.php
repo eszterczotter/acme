@@ -8,10 +8,9 @@ interface Console
      * Add a command to the console.
      *
      * @param string $command
-     * @param string $handler
      * @return Console
      */
-    public function command($command, $handler);
+    public function command($command);
 
     /**
      * Execute script.
@@ -23,7 +22,7 @@ interface Console
     /**
      * Set the name.
      *
-     * @param string $name
+     * @param Command $name
      * @return Console
      */
     public function name($name);

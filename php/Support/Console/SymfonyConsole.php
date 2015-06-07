@@ -2,18 +2,30 @@
 
 namespace Acme\Support\Console;
 
+use Symfony\Component\Console\Application;
+
 class SymfonyConsole implements Console
 {
+
+    /**
+     * @var Application
+     */
+    private $console;
+
+    public function __construct(Application $console)
+    {
+        $this->console = $console;
+    }
+
     /**
      * Add a command to the console.
      *
-     * @param string $command
-     * @param string $handler
+     * @param Command $command
      * @return Console
      */
-    public function command($command, $handler)
+    public function command($command)
     {
-        // TODO: Implement command() method.
+        $this->console->add(new SymfonyCommand($command));
     }
 
     /**
@@ -23,7 +35,7 @@ class SymfonyConsole implements Console
      */
     public function execute()
     {
-        // TODO: Implement execute() method.
+        $this->console->run();
     }
 
     /**
@@ -34,7 +46,8 @@ class SymfonyConsole implements Console
      */
     public function name($name)
     {
-        // TODO: Implement name() method.
+        $this->console->setName($name);
+        return $this;
     }
 
     /**
@@ -45,6 +58,7 @@ class SymfonyConsole implements Console
      */
     public function version($version)
     {
-        // TODO: Implement version() method.
+        $this->console->setVersion($version);
+        return $this;
     }
 }
