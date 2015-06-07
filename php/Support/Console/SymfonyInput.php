@@ -2,8 +2,23 @@
 
 namespace Acme\Support\Console;
 
+use Symfony\Component\Console\Input\InputInterface;
+
 class SymfonyInput implements Input
 {
+
+    /**
+     * The Symfony Input interface.
+     *
+     * @var InputInterface
+     */
+    private $input;
+
+    public function __construct(InputInterface $input)
+    {
+        $this->input = $input;
+    }
+
     /**
      * Get the script arguments.
      *
@@ -11,7 +26,7 @@ class SymfonyInput implements Input
      */
     public function arguments()
     {
-        // TODO: Implement arguments() method.
+        return array_merge($this->input->getOptions(), $this->input->getArguments());
     }
 
     /**
