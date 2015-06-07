@@ -19,4 +19,18 @@ interface Command
      * @return array
      */
     public function arguments();
+
+    /**
+     * Get the command's name.
+     *
+     * @return string
+     */
+    public function name();
+
+    /**
+     * Get the command's description.
+     *
+     * @return string
+     */
+    public function description();
 }

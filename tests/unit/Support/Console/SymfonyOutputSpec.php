@@ -9,6 +9,6 @@ class SymfonyOutputSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Console\SymfonyOutput');
+        $this->shouldHaveType('Acme\Support\Console\Output');
     }
 }

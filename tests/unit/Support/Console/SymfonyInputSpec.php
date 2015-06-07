@@ -9,6 +9,6 @@ class SymfonyInputSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Support\Console\SymfonyInput');
+        $this->shouldHaveType('Acme\Support\Console\Input');
     }
 }
