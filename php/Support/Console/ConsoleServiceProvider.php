@@ -41,7 +41,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $config = $this->container->get('config');
         $commands = $config->get('console.commands');
-        foreach ($commands as $command => $handler) {
+        foreach ($commands as $command) {
             $command = $this->container->get($command);
             $console->command($command);
         }

@@ -3,7 +3,7 @@
 return [
     'console' => [
         'commands' => [
-            // List console commands here.
+            Acme\Application\Cli\Commands\Example::class,
         ]
     ],
 ];
