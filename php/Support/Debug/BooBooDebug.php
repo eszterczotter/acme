@@ -4,10 +4,18 @@ namespace Acme\Support\Debug;
 
 use Acme\Support\Container\Container;
 use League\BooBoo\Handler\HandlerInterface;
+use League\BooBoo\Handler\LogHandler;
 use League\BooBoo\Runner;
 
 class BooBooDebug implements Debug, HandlerInterface
 {
+    /**
+     * Exception handlers
+     *
+     * @var array
+     */
+    private $handlers;
+
     /**
      * The Container instance.
      *
@@ -23,22 +31,23 @@ class BooBooDebug implements Debug, HandlerInterface
     private $booboo;
 
     /**
-     * Exception handlers
-     *
-     * @var array
+     * @var LogHandler
      */
-    private $handlers;
+
+    private $log;
 
     /**
      * Create new Exception Handler.
      *
      * @param Container $container
      * @param Runner $booboo
+     * @param LogHandler $log
      */
-    public function __construct(Container $container, Runner $booboo)
+    public function __construct(Container $container, Runner $booboo, LogHandler $log)
     {
         $this->container = $container;
         $this->booboo = $booboo;
+        $this->log = $log;
         $this->booboo->pushHandler($this);
         $this->booboo->treatErrorsAsExceptions(true);
     }
@@ -58,6 +67,8 @@ class BooBooDebug implements Debug, HandlerInterface
                 }
             }
         }
+
+        $this->log->handle($exception);
     }
 
     /**

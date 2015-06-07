@@ -4,15 +4,16 @@ namespace unit\Acme\Support\Debug;
 
 use Acme\Support\Container\Container;
 use Acme\Support\Debug\Handler;
+use League\BooBoo\Handler\LogHandler;
 use League\BooBoo\Runner;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class BooBooDebugSpec extends ObjectBehavior
 {
-    function let(Container $container, Runner $booboo)
+    function let(Container $container, Runner $booboo, LogHandler $log)
     {
-        $this->beConstructedWith($container, $booboo);
+        $this->beConstructedWith($container, $booboo, $log);
     }
 
     function it_is_initializable(Runner $booboo)
@@ -32,7 +33,8 @@ class BooBooDebugSpec extends ObjectBehavior
     function it_adds_an_exception_handler(
         Container $container,
         \Exception $exception,
-        Handler $handler
+        Handler $handler,
+        LogHandler $log
     )
     {
         $container->get(Handler::class)->willReturn($handler);
@@ -41,5 +43,6 @@ class BooBooDebugSpec extends ObjectBehavior
         $this->handle($exception);
 
         $handler->handle($exception)->shouldHaveBeenCalled();
+        $log->handle($exception)->shouldHaveBeenCalled();
     }
 }
