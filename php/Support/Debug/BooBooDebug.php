@@ -23,6 +23,13 @@ class BooBooDebug implements Debug, HandlerInterface
     private $booboo;
 
     /**
+     * Exception handlers
+     *
+     * @var array
+     */
+    private $handlers;
+
+    /**
      * Create new Exception Handler.
      *
      * @param Container $container
@@ -43,7 +50,14 @@ class BooBooDebug implements Debug, HandlerInterface
      */
     public function handle(\Exception $exception)
     {
-        // TODO: Implement handle() method.
+        foreach ($this->handlers as $type => $handlers) {
+            if (is_a($exception, $type)) {
+                foreach ($handlers as $handler) {
+                    $handler = $this->container->get($handler);
+                    $handler->handle($exception);
+                }
+            }
+        }
     }
 
     /**
@@ -65,6 +79,6 @@ class BooBooDebug implements Debug, HandlerInterface
      */
     public function handler($exception, $handler)
     {
-        // TODO: Implement handler() method.
+        $this->handlers[$exception][] = $handler;
     }
 }

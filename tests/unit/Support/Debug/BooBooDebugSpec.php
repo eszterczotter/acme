@@ -3,6 +3,7 @@
 namespace unit\Acme\Support\Debug;
 
 use Acme\Support\Container\Container;
+use Acme\Support\Debug\Handler;
 use League\BooBoo\Runner;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -26,5 +27,19 @@ class BooBooDebugSpec extends ObjectBehavior
     {
         $this->register();
         $booboo->register()->shouldHaveBeenCalled();
+    }
+
+    function it_adds_an_exception_handler(
+        Container $container,
+        \Exception $exception,
+        Handler $handler
+    )
+    {
+        $container->get(Handler::class)->willReturn($handler);
+
+        $this->handler(\Exception::class, Handler::class);
+        $this->handle($exception);
+
+        $handler->handle($exception)->shouldHaveBeenCalled();
     }
 }
