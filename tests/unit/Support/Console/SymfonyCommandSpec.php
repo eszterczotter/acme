@@ -17,4 +17,12 @@ class SymfonyCommandSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Symfony\Component\Console\Command\Command');
     }
+
+    function it_configures_itself(Command $command)
+    {
+        $command->name()->willReturn('command')->shouldBeCalled();
+        $command->description()->shouldBeCalled();
+        $command->arguments()->willReturn([])->shouldBeCalled();
+        $this->configure();
+    }
 }
