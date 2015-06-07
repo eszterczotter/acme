@@ -49,7 +49,8 @@ class SymfonyInput implements Input
      */
     public function argument($name)
     {
-        return $this->input->getArgument($name) ?: $this->input->getOption($name);
+        return $this->input->hasArgument($name) ?
+            $this->input->getArgument($name) : $this->input->getOption($name);
     }
 
     /**

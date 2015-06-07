@@ -31,7 +31,7 @@ class SymfonyCommand extends SCommand
         $this->setName($this->command->name())
              ->setDescription($this->command->description());
 
-        foreach ($this->command->arguments() as $argument => $settings) {
+        foreach ($this->getArguments() as $argument => $settings) {
             $settings = $this->mergeWithDefaults($settings);
 
             $this->addInput($argument, $settings);
@@ -84,11 +84,11 @@ class SymfonyCommand extends SCommand
 
     private function addInput($argument, $settings)
     {
-        if ($settings['required']) {
-            $this->addParameter($argument, $settings);
-
-        } elseif ($settings['flag']) {
+        if ($settings['flag']) {
             $this->addFlag($argument, $settings);
+
+        } elseif ($settings['required']) {
+            $this->addParameter($argument, $settings);
 
         } else {
             $this->addModifier($argument, $settings);
@@ -105,5 +105,23 @@ class SymfonyCommand extends SCommand
             'shortcut' => null,
             'flag' => false,
         ], $settings);
+    }
+
+    private function isAssociative($array)
+    {
+        return count(array_filter(array_keys($array), 'is_string'));
+    }
+
+    private function getArguments()
+    {
+        $arguments = $this->command->arguments();
+
+        if (!$this->isAssociative($arguments)) {
+            $arguments = array_map(function ($argument) {
+                return [];
+            }, array_combine($arguments, $arguments));
+            return $arguments;
+        }
+        return $arguments;
     }
 }

@@ -18,7 +18,7 @@ class Example implements Command
      */
     public function execute(Input $input, Output $output)
     {
-        $output->info('Wohooo. It works.');
+        $output->info('Example works.');
     }
 
     /**
