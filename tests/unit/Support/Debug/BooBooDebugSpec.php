@@ -3,7 +3,7 @@
 namespace unit\Acme\Support\Debug;
 
 use Acme\Support\Container\Container;
-use Acme\Support\Debug\Handler;
+use League\BooBoo\Handler\HandlerInterface;
 use League\BooBoo\Handler\LogHandler;
 use League\BooBoo\Runner;
 use PhpSpec\ObjectBehavior;
@@ -33,13 +33,13 @@ class BooBooDebugSpec extends ObjectBehavior
     function it_adds_an_exception_handler(
         Container $container,
         \Exception $exception,
-        Handler $handler,
+        HandlerInterface $handler,
         LogHandler $log
     )
     {
-        $container->get(Handler::class)->willReturn($handler);
+        $container->get(HandlerInterface::class)->willReturn($handler);
 
-        $this->handler(\Exception::class, Handler::class);
+        $this->handler(\Exception::class, HandlerInterface::class);
         $this->handle($exception);
 
         $handler->handle($exception)->shouldHaveBeenCalled();

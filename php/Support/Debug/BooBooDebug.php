@@ -85,7 +85,7 @@ class BooBooDebug implements Debug, HandlerInterface
     {
         $this->handlers[$exception][] = $handler;
     }
-    
+
     private function callHandlers(\Exception $exception, $handlers)
     {
         foreach ($handlers as $handler) {
