@@ -59,14 +59,7 @@ class BooBooDebug implements Debug, HandlerInterface
      */
     public function handle(\Exception $exception)
     {
-        foreach ($this->handlers as $type => $handlers) {
-            if (is_a($exception, $type)) {
-                foreach ($handlers as $handler) {
-                    $handler = $this->container->get($handler);
-                    $handler->handle($exception);
-                }
-            }
-        }
+        $this->runHandlers($exception);
 
         $this->log->handle($exception);
     }
@@ -91,5 +84,22 @@ class BooBooDebug implements Debug, HandlerInterface
     public function handler($exception, $handler)
     {
         $this->handlers[$exception][] = $handler;
+    }
+    
+    private function callHandlers(\Exception $exception, $handlers)
+    {
+        foreach ($handlers as $handler) {
+            $handler = $this->container->get($handler);
+            $handler->handle($exception);
+        }
+    }
+
+    private function runHandlers(\Exception $exception)
+    {
+        foreach ($this->handlers as $type => $handlers) {
+            if (is_a($exception, $type)) {
+                $this->callHandlers($exception, $handlers);
+            }
+        }
     }
 }
