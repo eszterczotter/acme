@@ -35,5 +35,4 @@ class SymfonyInputSpec extends ObjectBehavior
         $input->getOption($name)->willReturn($value)->shouldBeCalled();
         $this->argument($name)->shouldBe($value);
     }
-
 }
