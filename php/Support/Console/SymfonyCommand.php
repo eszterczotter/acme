@@ -43,7 +43,7 @@ class SymfonyCommand extends SCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
 
-        $input = new SymfonyInput($input);
+        $input = new SymfonyInput($input, $output);
         $output = new SymfonyOutput($output);
 
         $this->command->execute($input, $output);

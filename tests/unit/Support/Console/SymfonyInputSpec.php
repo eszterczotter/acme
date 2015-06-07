@@ -5,12 +5,13 @@ namespace unit\Acme\Support\Console;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class SymfonyInputSpec extends ObjectBehavior
 {
-    function let(InputInterface $input)
+    function let(InputInterface $input, OutputInterface $output)
     {
-        $this->beConstructedWith($input);
+        $this->beConstructedWith($input, $output);
     }
 
     function it_is_initializable()

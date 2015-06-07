@@ -2,7 +2,12 @@
 
 namespace Acme\Support\Console;
 
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ChoiceQuestion;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Question\Question;
 
 class SymfonyInput implements Input
 {
@@ -14,9 +19,17 @@ class SymfonyInput implements Input
      */
     private $input;
 
-    public function __construct(InputInterface $input)
+    /**
+     * The Symfony Output interface.
+     *
+     * @var OutputInterface
+     */
+    private $output;
+
+    public function __construct(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
+        $this->output = $output;
     }
 
     /**
@@ -48,7 +61,7 @@ class SymfonyInput implements Input
      */
     public function input($question, $default = null)
     {
-        // TODO: Implement input() method.
+        return $this->ask(new Question($question, $default));
     }
 
     /**
@@ -59,7 +72,7 @@ class SymfonyInput implements Input
      */
     public function confirm($question)
     {
-        // TODO: Implement confirm() method.
+        return $this->ask(new ConfirmationQuestion($question, false));
     }
 
     /**
@@ -70,7 +83,9 @@ class SymfonyInput implements Input
      */
     public function password($question)
     {
-        // TODO: Implement password() method.
+        $question = new Question($question);
+        $question->setHidden(true);
+        return $this->ask($question);
     }
 
     /**
@@ -82,7 +97,7 @@ class SymfonyInput implements Input
      */
     public function select($question, $options)
     {
-        // TODO: Implement select() method.
+        return $this->choice($question, $options, true);
     }
 
     /**
@@ -94,6 +109,18 @@ class SymfonyInput implements Input
      */
     public function choose($question, $options)
     {
-        // TODO: Implement choose() method.
+        return $this->choice($question, $options);
+    }
+
+    private function choice($question, $options, $multiple = false)
+    {
+        $question = new ChoiceQuestion($question, $options);
+        $question->setMultiselect($multiple);
+        return $this->ask($question);
+    }
+
+    private function ask(Question $question)
+    {
+        return (new QuestionHelper())->ask($this->input, $this->output, $question);
     }
 }
