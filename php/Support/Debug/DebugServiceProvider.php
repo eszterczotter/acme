@@ -13,7 +13,9 @@ class DebugServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        $this->container->singleton(Debug::class, BooBooDebug::class);
+        $this->container->alias('debug', Debug::class);
+        $this->container->inflector(Debug::class, [$this, 'configure']);
     }
 
     /**
@@ -23,6 +25,22 @@ class DebugServiceProvider extends ServiceProvider
      */
     public function services()
     {
-        // TODO: Implement services() method.
+        return [
+            Debug::class,
+            'debug'
+        ];
+    }
+
+    public function configure(Debug $debug)
+    {
+        $app = $this->container->get('app');
+
+        $exceptions = require $app->configPath() . '/exceptions.php';
+
+        foreach ($exceptions['exceptions'] as $exception => $handlers) {
+            foreach ((array) $handlers as $handler) {
+                $debug->handler($exception, $handler);
+            }
+        }
     }
 }
