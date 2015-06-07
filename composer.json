@@ -3,7 +3,8 @@
         "league/container": "^1.3",
         "symfony/console": "^2.6",
         "hassankhan/config": "^0.8.2",
-        "vlucas/phpdotenv": "^2.0"
+        "vlucas/phpdotenv": "^2.0",
+        "monolog/monolog": "^1.13"
     },
     "require-dev": {
         "behat/behat": "^3.0",
