@@ -11,7 +11,8 @@
         "monolog/monolog": "^1.13",
         "league/booboo": "^1.0",
         "psr/log": "^1.0",
-        "nesbot/carbon": "^1.19"
+        "nesbot/carbon": "^1.19",
+        "psr/http-message": "^1.0"
     },
     "require-dev": {
         "behat/behat": "^3.0",
