@@ -2,7 +2,9 @@
 
 namespace Acme\Support\Http;
 
-interface Request
+use Psr\Http\Message\RequestInterface;
+
+interface Request extends RequestInterface
 {
 
 }

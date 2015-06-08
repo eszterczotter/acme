@@ -2,7 +2,9 @@
 
 namespace Acme\Support\Http;
 
-interface Response
+use Psr\Http\Message\ResponseInterface;
+
+interface Response extends ResponseInterface
 {
 
 }
