@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Support\Http;
+namespace Acme\Support\Http\Request;
 
 use Psr\Http\Message\RequestInterface;
 
