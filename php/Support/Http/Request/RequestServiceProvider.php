@@ -3,7 +3,7 @@
 namespace Acme\Support\Http\Request;
 
 use Acme\Support\Container\ServiceProvider;
-use Zend\Diactoros\ServerRequest;
+use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\ServerRequestFactory;
 
 class RequestServiceProvider extends ServiceProvider
@@ -15,17 +15,11 @@ class RequestServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->add(Request::class, function () {
-            return new DiactorosRequest(
-                ServerRequestFactory::fromGlobals()
-            );
-        });
-
-        $this->container->add(ServerRequest::class, function () {
+        $this->container->add(ServerRequestInterface::class, function () {
             return ServerRequestFactory::fromGlobals();
         });
 
-        $this->container->inflector(Request::class, [$this, 'validate']);
+        $this->container->alias('request', ServerRequestInterface::class);
     }
 
     /**
@@ -36,13 +30,8 @@ class RequestServiceProvider extends ServiceProvider
     public function services()
     {
         return [
-            Request::class,
+            ServerRequestInterface::class,
             'request',
         ];
-    }
-
-    public function validate(Request $request)
-    {
-        $request->validate();
     }
 }
