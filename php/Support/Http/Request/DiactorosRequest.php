@@ -17,4 +17,9 @@ class DiactorosRequest extends ServerRequest implements Request
             $request->getHeaders()
         );
     }
+
+    public function validate()
+    {
+        //TODO
+    }
 }
