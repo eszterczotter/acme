@@ -4,8 +4,6 @@ namespace Acme\Support\Log;
 
 use Acme\Support\Container\ServiceProvider;
 use Carbon\Carbon;
-use Monolog\ErrorHandler;
-use Monolog\Handler\PsrHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -19,17 +17,15 @@ class LogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(Log::class, function () {
+        $this->container->singleton(LoggerInterface::class, function () {
             $monolog = new Logger("log");
 
             $monolog->pushHandler(new StreamHandler($this->logFile()));
 
-            return new MonoLogger($monolog);
+            return $monolog;
         });
 
-        $this->container->alias('log', Log::class);
-
-        $this->container->alias(LoggerInterface::class, Log::class);
+        $this->container->alias('log', LoggerInterface::class);
     }
 
     /**
@@ -41,7 +37,6 @@ class LogServiceProvider extends ServiceProvider
     {
         return [
             LoggerInterface::class,
-            Log::class,
             'log',
         ];
     }
