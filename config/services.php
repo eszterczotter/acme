@@ -7,5 +7,6 @@ return [
         Acme\Support\Environment\EnvironmentServiceProvider::class,
         Acme\Support\Config\ConfigServiceProvider::class,
         Acme\Support\Console\ConsoleServiceProvider::class,
+        Acme\Support\Http\Request\RequestServiceProvider::class,
     ],
 ];
