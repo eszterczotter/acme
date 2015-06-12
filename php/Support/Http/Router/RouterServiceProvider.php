@@ -16,7 +16,8 @@ class RouterServiceProvider extends ServiceProvider
     {
         $this->container->singleton(Router::class, function () {
             $strategy = new DispatchStrategy($this->container);
-            $leageRoute = new RouteCollection($strategy);
+            $leageRoute = new RouteCollection();
+            $leageRoute->setStrategy($strategy);
             return new LeagueRouter($leageRoute);
         });
 

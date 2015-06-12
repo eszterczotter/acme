@@ -14,7 +14,7 @@ class BooBooDebug implements Debug, HandlerInterface
      *
      * @var array
      */
-    private $handlers;
+    private $handlers = [];
 
     /**
      * The Container instance.

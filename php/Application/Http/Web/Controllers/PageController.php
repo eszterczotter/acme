@@ -2,12 +2,27 @@
 
 namespace Acme\Application\Http\Web\Controllers;
 
-use Psr\Http\Message\RequestInterface as Request;
+use Acme\Support\Config\Config;
 
-class PageController
+class PageController extends Controller
 {
-    public function home(Request $request)
-    {
+    /**
+     * @var Config
+     */
+    private $config;
 
+    /**
+     * PageController constructor.
+     * @param Config $config
+     */
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+    }
+
+    public function home()
+    {
+        $app = $this->config->get('app');
+        return $this->respond($app['name'] . ' version ' . $app['version']);
     }
 }
