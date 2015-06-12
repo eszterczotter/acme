@@ -4,6 +4,7 @@ namespace Acme\Support\Http\Router;
 
 use League\Route\Dispatcher;
 use League\Route\RouteCollection;
+use Psr\Http\Message\ResponseInterface;
 
 class LeagueRouter implements Router
 {
@@ -121,10 +122,10 @@ class LeagueRouter implements Router
      *
      * @param string $verb
      * @param string $path
-     * @return void
+     * @return ResponseInterface
      */
     public function dispatch($verb, $path)
     {
-        $this->route->getDispatcher()->dispatch($verb, $path);
+        return $this->route->getDispatcher()->dispatch($verb, $path);
     }
 }
