@@ -36,7 +36,9 @@ class ZendServer implements Server
      */
     public function serve()
     {
-        $response = $this->router->dispatch($this->request->getMethod(), $this->request->getUri()->getPath());
+        $method = $this->request->getMethod();
+        $path = $this->request->getUri()->getPath();
+        $response = $this->router->dispatch($method, $path);
         $this->emitter->emit($response);
     }
 }
