@@ -8,5 +8,7 @@ return [
         Acme\Support\Config\ConfigServiceProvider::class,
         Acme\Support\Console\ConsoleServiceProvider::class,
         Acme\Support\Http\Request\RequestServiceProvider::class,
+        Acme\Support\Http\Response\ResponseServiceProvider::class,
+        Acme\Support\Http\Router\RouterServiceProvider::class,
     ],
 ];
