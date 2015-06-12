@@ -10,5 +10,6 @@ return [
         Acme\Support\Http\Request\RequestServiceProvider::class,
         Acme\Support\Http\Response\ResponseServiceProvider::class,
         Acme\Support\Http\Router\RouterServiceProvider::class,
+        Acme\Support\Http\Server\ServerServiceProvider::class,
     ],
 ];
