@@ -34,7 +34,7 @@ class Application implements Contract\Application
         if (PHP_SAPI == 'cli') {
             return new Cli\Application($basePath);
         } else {
-            return Http\Application::create($basePath);
+            return new Http\Application($basePath);
         }
     }
 
