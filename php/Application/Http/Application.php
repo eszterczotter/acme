@@ -12,4 +12,10 @@ class Application extends \Acme\Application\Application
             return new Web\Application($basePath);
         }
     }
+
+    public function run()
+    {
+        $server = $this->container()->get('server');
+        $server->serve();
+    }
 }

@@ -15,7 +15,7 @@ class PresenceCest
     // tests
     public function apiShouldBeLive(IntegratorTester $I)
     {
-        $I->amOnPage('api/');
+        $I->amOnPage('api');
         $I->see('API');
         $I->see('0.0.0');
     }
