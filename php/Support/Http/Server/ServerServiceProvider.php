@@ -14,10 +14,7 @@ class ServerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(Server::class, function () {
-            $emitter = new SapiEmitter();
-            return new ZendServer($emitter);
-        });
+        $this->container->singleton(Server::class, [$this, 'make']);
 
         $this->container->alias('server', Server::class);
     }
@@ -33,5 +30,15 @@ class ServerServiceProvider extends ServiceProvider
             Server::class,
             'server',
         ];
+    }
+
+    /**
+     * Make a new Server.
+     *
+     * @return Server
+     */
+    public function make()
+    {
+        return new ZendServer(new SapiEmitter());
     }
 }

@@ -31,6 +31,9 @@ class LeagueContainer extends Container
      */
     public function add($name, $concrete)
     {
+        if (is_callable($concrete)) {
+            $concrete = call_user_func($concrete);
+        }
         $this->container->add($name, $concrete, false);
         return $this;
     }
@@ -56,6 +59,9 @@ class LeagueContainer extends Container
      */
     public function singleton($name, $concrete = null)
     {
+        if (is_callable($concrete)) {
+            $concrete = call_user_func($concrete);
+        }
         $this->container->singleton($name, $concrete);
         return $this;
     }
