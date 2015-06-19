@@ -2,22 +2,27 @@
 
 namespace unit\Acme\Support\Http\Server;
 
-use Acme\Support\Http\Router\Router;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ResponseInterface as Response;
 use Zend\Diactoros\Response\EmitterInterface;
 
 class ZendServerSpec extends ObjectBehavior
 {
-    function let(Router $router, EmitterInterface $emitter, ServerRequestInterface $request, ResponseInterface $response)
+    function let(EmitterInterface $emitter)
     {
-        $this->beConstructedWith($router, $emitter, $request, $response);
+        $this->beConstructedWith($emitter);
     }
 
     function it_is_initializable()
     {
         $this->shouldHaveType('Acme\Support\Http\Server\Server');
+    }
+
+    function it_sends_a_response(EmitterInterface $emitter, Response $response)
+    {
+        $this->send($response)->shouldReturn($response);
+
+        $emitter->emit($response)->shouldHaveBeenCalled();
     }
 }

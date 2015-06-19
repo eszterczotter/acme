@@ -15,11 +15,8 @@ class ServerServiceProvider extends ServiceProvider
     public function register()
     {
         $this->container->singleton(Server::class, function () {
-            $router = $this->container->get('router');
             $emitter = new SapiEmitter();
-            $request = $this->container->get('request');
-            $response = $this->container->get('response');
-            return new ZendServer($router, $emitter, $request, $response);
+            return new ZendServer($emitter);
         });
 
         $this->container->alias('server', Server::class);
