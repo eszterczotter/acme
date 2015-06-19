@@ -49,6 +49,17 @@ class ZendServer implements Server
     public function serve()
     {
         $response = $this->router->dispatch($this->request, $this->response);
+        $this->send($response);
+    }
+
+    /**
+     * Send a response.
+     *
+     * @param Response $response
+     * @return void
+     */
+    public function send(Response $response)
+    {
         $this->emitter->emit($response);
     }
 }
