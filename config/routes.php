@@ -8,5 +8,8 @@ return [
         '/api' => [
             'GET' => [Acme\Application\Http\Api\Controllers\ApiController::class, 'index'],
         ],
+        '/test' => [
+            'GET' => [Acme\Application\Http\Web\Controllers\PageController::class, 'test'],
+        ],
     ]
 ];

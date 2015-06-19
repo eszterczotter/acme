@@ -88,6 +88,7 @@ class FastRouter implements Router
         $controller = $this->container->get($controller);
         $controller->setRequest($request);
         $controller->setResponse($response);
+        $controller->setContainer($this->container);
         return $this->container->call([$controller, $action], $args);
     }
 

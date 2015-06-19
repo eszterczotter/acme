@@ -8,7 +8,9 @@ class PageController extends Controller
 {
     public function home(Config $config)
     {
-        $app = $config->get('app');
-        return $this->respond($app['name'] . ' version ' . $app['version']);
+        return $this->view('page/home', [
+            'name' => $config->get('app.name'),
+            'version' => $config->get('app.version'),
+        ]);
     }
 }

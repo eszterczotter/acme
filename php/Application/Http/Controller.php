@@ -2,6 +2,7 @@
 
 namespace Acme\Application\Http;
 
+use Acme\Support\Container\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
@@ -16,6 +17,11 @@ class Controller
      * @var Response
      */
     protected $response;
+
+    /**
+     * @var Container
+     */
+    private $container;
 
     /**
      * @param Request $request
@@ -33,9 +39,20 @@ class Controller
         $this->response = $response;
     }
 
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+    }
+
     protected function respond($content)
     {
         $this->response->getBody()->write($content);
         return $this->response;
+    }
+
+    protected function view($template, $data = [])
+    {
+        $view = $this->container->get('view');
+        return $this->respond($view->render($template, $data));
     }
 }

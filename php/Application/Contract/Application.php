@@ -24,4 +24,8 @@ interface Application
     public function storagePath();
 
     public function logPath();
+
+    public function resourcePath();
+
+    public function templatePath();
 }

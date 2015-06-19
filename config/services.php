@@ -12,5 +12,6 @@ return [
         Acme\Support\Http\Router\RouterServiceProvider::class,
         Acme\Support\Http\Server\ServerServiceProvider::class,
         Acme\Support\Http\Kernel\KernelServiceProvider::class,
+        Acme\Support\Http\View\ViewServiceProvider::class,
     ],
 ];

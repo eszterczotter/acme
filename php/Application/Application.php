@@ -97,4 +97,14 @@ class Application implements Contract\Application
     {
         return $this->storagePath() . '/logs';
     }
+
+    public function resourcePath()
+    {
+        return $this->basePath() . '/resources';
+    }
+
+    public function templatePath()
+    {
+        return $this->resourcePath() . '/templates';
+    }
 }
