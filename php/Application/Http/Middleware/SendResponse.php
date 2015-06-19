@@ -30,11 +30,12 @@ class SendResponse implements Middleware
      * @param Request $request
      * @param Response $response
      * @param callable $next
+     * @return Response
      */
     public function __invoke(Request $request, Response $response, callable $next)
     {
         $response = $next($request, $response);
 
-        $this->server->send($response);
+        return $this->server->send($response);
     }
 }

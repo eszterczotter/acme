@@ -34,6 +34,8 @@ class DispatchRoute implements Middleware
      */
     public function __invoke(Request $request, Response $response, callable $next)
     {
+        $response = $next($request, $response);
+
         return $this->router->dispatch($request, $response);
     }
 }

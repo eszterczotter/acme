@@ -17,7 +17,7 @@ interface Server
      * Send a response.
      *
      * @param Response $response
-     * @return void
+     * @return Response
      */
     public function send(Response $response);
 }

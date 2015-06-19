@@ -56,10 +56,12 @@ class ZendServer implements Server
      * Send a response.
      *
      * @param Response $response
-     * @return void
+     * @return Response
      */
     public function send(Response $response)
     {
         $this->emitter->emit($response);
+
+        return $response;
     }
 }
