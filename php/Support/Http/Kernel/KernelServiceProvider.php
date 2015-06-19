@@ -3,6 +3,7 @@
 namespace Acme\Support\Http\Kernel;
 
 use Acme\Support\Container\ServiceProvider;
+use Relay\Relay;
 
 class KernelServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,20 @@ class KernelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // TODO: Implement register() method.
+        $this->container->singleton(Kernel::class, function () {
+
+            $config = $this->container->get('config');
+
+            $middleware = $config->get('middleware');
+
+            $relay = new Relay($middleware, function ($middleware) {
+                return $this->container->get($middleware);
+            });
+
+            return new RelayKernel($relay);
+        });
+
+        $this->container->alias('kernel', Kernel::class);
     }
 
     /**
@@ -23,6 +37,9 @@ class KernelServiceProvider extends ServiceProvider
      */
     public function services()
     {
-        // TODO: Implement services() method.
+        return [
+            Kernel::class,
+            'kernel'
+        ];
     }
 }
