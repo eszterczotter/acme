@@ -18,7 +18,8 @@ class ServerServiceProvider extends ServiceProvider
             $router = $this->container->get('router');
             $emitter = new SapiEmitter();
             $request = $this->container->get('request');
-            return new ZendServer($router, $emitter, $request);
+            $response = $this->container->get('response');
+            return new ZendServer($router, $emitter, $request, $response);
         });
 
         $this->container->alias('server', Server::class);

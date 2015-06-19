@@ -7,7 +7,7 @@ return [
 
         \Acme\Support\Http\Router\Exceptions\MethodNotAllowedException::class =>
             \Acme\Application\Http\Exceptions\Handlers\MethodNotAllowedHandler::class,
-        
+
         // \Exception::class => [ \Handler::class, \Handler::class ]
     ],
 ];

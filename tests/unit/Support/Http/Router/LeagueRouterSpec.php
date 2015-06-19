@@ -6,6 +6,9 @@ use League\Route\Dispatcher;
 use League\Route\RouteCollection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UriInterface;
 
 class LeagueRouterSpec extends ObjectBehavior
 {
@@ -99,12 +102,17 @@ class LeagueRouterSpec extends ObjectBehavior
         $route->addRoute($verb, $path, $controller . '::' . $action)->shouldHaveBeenCalled();
     }
 
-    function it_dispatches_a_route(RouteCollection $route, Dispatcher $dispatcher)
+    function it_dispatches_a_route(RouteCollection $route, Dispatcher $dispatcher, ServerRequestInterface $request, ResponseInterface $response, UriInterface $uri)
     {
-        $route->getDispatcher()->willReturn($dispatcher);
         $verb = 'GET';
         $path = '/';
-        $this->dispatch($verb, $path);
+        $route->getDispatcher()->willReturn($dispatcher);
+        $request->getMethod()->willReturn($verb);
+        $request->getUri()->willReturn($uri);
+        $uri->getPath()->willReturn($path);
+
+        $this->dispatch($request, $response);
+
         $dispatcher->dispatch($verb, $path)->shouldHaveBeenCalled();
     }
 }

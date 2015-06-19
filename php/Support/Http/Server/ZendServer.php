@@ -3,7 +3,8 @@
 namespace Acme\Support\Http\Server;
 
 use Acme\Support\Http\Router\Router;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Zend\Diactoros\Response\EmitterInterface;
 
 class ZendServer implements Server
@@ -18,15 +19,26 @@ class ZendServer implements Server
      */
     private $emitter;
     /**
-     * @var RequestInterface
+     * @var Request
      */
     private $request;
+    /**
+     * @var Response
+     */
+    private $response;
 
-    public function __construct(Router $router, EmitterInterface $emitter, RequestInterface $request)
+    /**
+     * @param Router $router
+     * @param EmitterInterface $emitter
+     * @param Request $request
+     * @param Response $response
+     */
+    public function __construct(Router $router, EmitterInterface $emitter, Request $request, Response $response)
     {
         $this->router = $router;
         $this->emitter = $emitter;
         $this->request = $request;
+        $this->response = $response;
     }
 
     /**
@@ -36,9 +48,7 @@ class ZendServer implements Server
      */
     public function serve()
     {
-        $method = $this->request->getMethod();
-        $path = $this->request->getUri()->getPath();
-        $response = $this->router->dispatch($method, $path);
+        $response = $this->router->dispatch($this->request, $this->response);
         $this->emitter->emit($response);
     }
 }

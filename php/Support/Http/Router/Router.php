@@ -2,7 +2,8 @@
 
 namespace Acme\Support\Http\Router;
 
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
 
 interface Router
 {
@@ -82,9 +83,9 @@ interface Router
     /**
      * Dispatch to the given route.
      *
-     * @param string $verb
-     * @param string $path
-     * @return ResponseInterface
+     * @param Request $request
+     * @param Response $response
+     * @return Response
      */
-    public function dispatch($verb, $path);
+    public function dispatch(Request $request, Response $response);
 }
