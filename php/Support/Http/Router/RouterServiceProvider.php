@@ -18,12 +18,12 @@ class RouterServiceProvider extends ServiceProvider
             $strategy = new DispatchStrategy($this->container);
             $leageRoute = new RouteCollection();
             $leageRoute->setStrategy($strategy);
-            return new LeagueRouter($leageRoute);
+            $router = new LeagueRouter($leageRoute);
+            $this->configure($router);
+            return $router;
         });
 
         $this->container->alias('router', Router::class);
-
-        $this->container->inflector(Router::class, [$this, 'configure']);
     }
 
     /**

@@ -6,7 +6,9 @@ class Application extends \Acme\Application\Application
 {
     public function run()
     {
-        $server = $this->container()->get('server');
-        $server->serve();
+        $request = $this->container()->get('request');
+        $response = $this->container()->get('response');
+        $kernel = $this->container()->get('kernel');
+        $kernel->process($request, $response);
     }
 }
