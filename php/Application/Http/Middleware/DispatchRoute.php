@@ -3,38 +3,37 @@
 namespace Acme\Application\Http\Middleware;
 
 use Acme\Support\Http\Kernel\Middleware;
-use Acme\Support\Http\Server\Server;
+use Acme\Support\Http\Router\Router;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class SendResponse implements Middleware
+class DispatchRoute implements Middleware
 {
     /**
-     * @var Server
+     * @var Router
      */
-    private $server;
+    private $router;
 
     /**
      * Create a new instance.
      *
-     * @param Server $server
+     * @param Router $router
      */
-    public function __construct(Server $server)
+    public function __construct(Router $router)
     {
-        $this->server = $server;
+        $this->router = $router;
     }
 
     /**
-     * Send the response.
+     * Dispatch the route.
      *
      * @param Request $request
      * @param Response $response
      * @param callable $next
+     * @return Response
      */
     public function __invoke(Request $request, Response $response, callable $next)
     {
-        $response = $next($request, $response);
-
-        $this->server->send($response);
+        return $this->router->dispatch($request, $response);
     }
 }
