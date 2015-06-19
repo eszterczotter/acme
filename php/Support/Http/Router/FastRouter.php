@@ -34,7 +34,7 @@ class FastRouter implements Router
     }
 
     /**
-     * Dispatch to the given route.
+     * Route based on the request and response.
      *
      * @param Request $request
      * @param Response $response
@@ -48,19 +48,61 @@ class FastRouter implements Router
 
         $route = $this->dispatcher->dispatch($request->getMethod(), $uri->getPath());
 
-        switch ($route[0]) {
-            case Dispatcher::NOT_FOUND:
-                throw new RouteNotFoundException($request, $response);
-            case Dispatcher::METHOD_NOT_ALLOWED:
-                $allowed = $route[1];
-                throw new MethodNotAllowedException($request, $response, $allowed);
-            case Dispatcher::FOUND:
-                $handler = $route[1];
-                $controller = $handler[0];
-                $action = $handler[1];
-                $args = $route[2];
-                $controller = $this->container->get($controller);
-                return $this->container->call([$controller, $action], $args);
+        return $this->dispatch($request, $response, $route);
+    }
+
+    /**
+     * Dispatch the route.
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param array $route
+     * @return Response
+     * @throws MethodNotAllowedException
+     * @throws RouteNotFoundException
+     */
+    private function dispatch(Request $request, Response $response, $route)
+    {
+        if ($route[0] == Dispatcher::NOT_FOUND) {
+            throw new RouteNotFoundException($request, $response);
         }
+
+        if ($route[0] == Dispatcher::METHOD_NOT_ALLOWED) {
+            throw new MethodNotAllowedException($request, $response, $route[1]);
+        }
+
+        return $this->marshall($request, $response, $route);
+    }
+
+    /**
+     * Marshall the controller.
+     *
+     * @param Request $request
+     * @param Response $response
+     * @param array $route
+     * @return Response
+     */
+    private function marshall(Request $request, Response $response, $route)
+    {
+        list($controller, $action, $args) = $this->extract($route);
+        $controller = $this->container->get($controller);
+        $controller->setRequest($request);
+        $controller->setResponse($response);
+        return $this->container->call([$controller, $action], $args);
+    }
+
+    /**
+     * Extract the route.
+     *
+     * @param array $route
+     * @return array
+     */
+    private function extract($route)
+    {
+        $handler = $route[1];
+        $controller = $handler[0];
+        $action = $handler[1];
+        $args = $route[2];
+        return array($controller, $action, $args);
     }
 }
