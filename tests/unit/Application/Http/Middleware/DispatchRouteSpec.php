@@ -24,7 +24,7 @@ class DispatchRouteSpec extends ObjectBehavior
     {
         $next = function($request, $response) {return $response; };
 
-        $router->dispatch($request, $response)->shouldBeCalled();
+        $router->route($request, $response)->shouldBeCalled();
 
         $this->__invoke($request, $response, $next);
     }

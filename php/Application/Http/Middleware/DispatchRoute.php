@@ -36,6 +36,6 @@ class DispatchRoute implements Middleware
     {
         $response = $next($request, $response);
 
-        return $this->router->dispatch($request, $response);
+        return $this->router->route($request, $response);
     }
 }

@@ -3,6 +3,7 @@
 namespace Acme\Support\Http\Router;
 
 use Acme\Support\Container\ServiceProvider;
+use FastRoute\RouteCollector;
 use League\Route\RouteCollection;
 
 class RouterServiceProvider extends ServiceProvider
@@ -14,14 +15,7 @@ class RouterServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->container->singleton(Router::class, function () {
-            $strategy = new DispatchStrategy($this->container);
-            $leageRoute = new RouteCollection();
-            $leageRoute->setStrategy($strategy);
-            $router = new LeagueRouter($leageRoute);
-            $this->configure($router);
-            return $router;
-        });
+        $this->container->singleton(Router::class, [$this, 'make']);
 
         $this->container->alias('router', Router::class);
     }
@@ -39,15 +33,21 @@ class RouterServiceProvider extends ServiceProvider
         ];
     }
 
-    public function configure(Router $router)
+    public function make()
+    {
+        $dispatcher = \FastRoute\simpleDispatcher([$this, 'collect']);
+        return new FastRouter($this->container, $dispatcher);
+    }
+
+    public function collect(RouteCollector $router)
     {
         $config = $this->container->get('config');
 
         $routes = $config->get('routes');
 
-        foreach ($routes as $path => $controllers) {
-            foreach ($controllers as $verb => $controller) {
-                $router->route($verb, $path, $controller);
+        foreach ($routes as $path => $methods) {
+            foreach ($methods as $method => $handler) {
+                $router->addRoute($method, $path, $handler);
             }
         }
     }
