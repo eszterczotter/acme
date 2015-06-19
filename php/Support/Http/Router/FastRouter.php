@@ -64,11 +64,11 @@ class FastRouter implements Router
     private function dispatch(Request $request, Response $response, $route)
     {
         if ($route[0] == Dispatcher::NOT_FOUND) {
-            throw new RouteNotFoundException($request, $response);
+            throw new RouteNotFoundException();
         }
 
         if ($route[0] == Dispatcher::METHOD_NOT_ALLOWED) {
-            throw new MethodNotAllowedException($request, $response, $route[1]);
+            throw new MethodNotAllowedException();
         }
 
         return $this->marshall($request, $response, $route);
