@@ -8,11 +8,6 @@ use Prophecy\Argument;
 
 class ApiControllerSpec extends ObjectBehavior
 {
-    function let(Config $config)
-    {
-        $this->beConstructedWith($config);
-    }
-
     function it_is_initializable()
     {
         $this->shouldHaveType('Acme\Application\Http\Api\Controllers\ApiController');
