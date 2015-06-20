@@ -14,5 +14,6 @@ return [
         Acme\Support\Http\Kernel\KernelServiceProvider::class,
         Acme\Support\Http\View\ViewServiceProvider::class,
         Acme\Support\Doctrine\DoctrineServiceProvider::class,
+        Acme\Support\Bus\BusServiceProvider::class,
     ],
 ];
