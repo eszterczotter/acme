@@ -4,6 +4,9 @@ namespace Acme\Support\Bus;
 
 use Acme\Support\Container\ServiceProvider;
 use League\Tactician\CommandBus;
+use League\Tactician\Handler\CommandHandlerMiddleware;
+use League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor;
+use League\Tactician\Handler\MethodNameInflector\InvokeInflector;
 
 class BusServiceProvider extends ServiceProvider
 {
@@ -34,6 +37,14 @@ class BusServiceProvider extends ServiceProvider
 
     public function make()
     {
-        return new LeagueBus(new CommandBus([]));
+        $handleCommands = new CommandHandlerMiddleware(
+            new ClassNameExtractor(),
+            new NameBasedHandlerLocator($this->container),
+            new InvokeInflector()
+        );
+
+        return new LeagueBus(new CommandBus([
+            $handleCommands,
+        ]));
     }
 }
