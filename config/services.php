@@ -2,6 +2,7 @@
 
 return [
     'services' => [
+        // Support
         Acme\Support\Log\LogServiceProvider::class,
         Acme\Support\Debug\DebugServiceProvider::class,
         Acme\Support\Environment\EnvironmentServiceProvider::class,
@@ -15,5 +16,6 @@ return [
         Acme\Support\Http\View\ViewServiceProvider::class,
         Acme\Support\Doctrine\DoctrineServiceProvider::class,
         Acme\Support\Bus\BusServiceProvider::class,
+        // Domain
     ],
 ];
