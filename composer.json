@@ -17,7 +17,8 @@
         "relay/relay": "1.*@dev",
         "nikic/fast-route": "^0.5.0",
         "league/plates": "^3.1",
-        "doctrine/orm": "^2.5"
+        "doctrine/orm": "^2.5",
+        "league/tactician": "^0.6.0"
     },
     "require-dev": {
         "behat/behat": "^3.0",
