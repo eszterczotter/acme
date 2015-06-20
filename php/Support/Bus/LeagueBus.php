@@ -27,6 +27,6 @@ class LeagueBus implements Bus
      */
     public function execute($command)
     {
-        $this->bus->handle($command);
+        return $this->bus->handle($command);
     }
 }
