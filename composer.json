@@ -20,8 +20,7 @@
         "doctrine/orm": "^2.5",
         "league/tactician": "^0.6.0",
         "gettext/gettext": "^3.4",
-        "symfony/translation": "^2.7",
-        "symfony/config": "^2.7"
+        "symfony/translation": "^2.7"
     },
     "require-dev": {
         "behat/behat": "^3.0",

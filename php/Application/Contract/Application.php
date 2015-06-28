@@ -28,4 +28,6 @@ interface Application
     public function resourcePath();
 
     public function templatePath();
+
+    public function localePath();
 }

@@ -16,6 +16,7 @@ return [
         Acme\Support\Http\View\ViewServiceProvider::class,
         Acme\Support\Doctrine\DoctrineServiceProvider::class,
         Acme\Support\Bus\BusServiceProvider::class,
+        Acme\Support\Translator\TranslatorServiceProvider::class,
         // Domain
     ],
 ];

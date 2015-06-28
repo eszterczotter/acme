@@ -107,4 +107,9 @@ class Application implements Contract\Application
     {
         return $this->resourcePath() . '/templates';
     }
+
+    public function localePath()
+    {
+        return $this->resourcePath() . '/locales';
+    }
 }
