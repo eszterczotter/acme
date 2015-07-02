@@ -18,6 +18,7 @@ return [
         Acme\Support\Bus\BusServiceProvider::class,
         Acme\Support\Translator\TranslatorServiceProvider::class,
         Acme\Support\Event\EventServiceProvider::class,
+        Acme\Support\Validation\ValidationServiceProvider::class,
         // Domain
     ],
 ];
