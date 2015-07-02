@@ -20,7 +20,8 @@
         "doctrine/orm": "^2.5",
         "league/tactician": "^0.6.0",
         "symfony/translation": "^2.7",
-        "league/event": "^2.1"
+        "league/event": "^2.1",
+        "respect/validation": "^0.9.3"
     },
     "require-dev": {
         "behat/behat": "^3.0",
