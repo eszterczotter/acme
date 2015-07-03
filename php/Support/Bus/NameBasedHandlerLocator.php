@@ -8,6 +8,8 @@ use League\Tactician\Handler\Locator\HandlerLocator;
 
 class NameBasedHandlerLocator implements HandlerLocator
 {
+    use CommandTranslator;
+
     /**
      * @var Container
      */
@@ -32,22 +34,8 @@ class NameBasedHandlerLocator implements HandlerLocator
      */
     public function getHandlerForCommand($commandName)
     {
-        $handlerName = $this->extractHandlerName($commandName);
+        $handlerName = $this->translate($commandName, 'Handler');
 
         return $this->container->get($handlerName);
-    }
-
-    /**
-     * @param $commandName
-     * @return string
-     */
-    private function extractHandlerName($commandName)
-    {
-        preg_match('/^(.+?\\\\?)??(\w+)Command$/', $commandName, $match);
-
-        $nameSpace = $match[1];
-        $commandName = $match[2];
-
-        return $nameSpace . 'Handlers\\' . $commandName . 'Handler';
     }
 }
