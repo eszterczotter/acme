@@ -43,7 +43,10 @@ class BusServiceProvider extends ServiceProvider
             new InvokeInflector()
         );
 
+        $validateCommands = new CommandValidatorMiddleware();
+
         return new LeagueBus(new CommandBus([
+            $validateCommands,
             $handleCommands,
         ]));
     }
