@@ -22,7 +22,8 @@
         "symfony/translation": "^2.7",
         "league/event": "^2.1",
         "respect/validation": "^0.9.3",
-        "league/fractal": "^0.12.0"
+        "league/fractal": "^0.12.0",
+        "doctrine/inflector": "^1.0"
     },
     "require-dev": {
         "behat/behat": "^3.0",
