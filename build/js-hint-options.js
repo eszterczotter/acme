@@ -19,7 +19,7 @@
         this.maxerr         = 1;                // fails fast
         this.maxparams      = 3;                // use max 3 parameters in a function
         this.maxstatements  = 0;                // use unlimited number of statements in a function
-        this.latedef        = true;             // do not use variable before definition
+        this.latedef        = false;             // do not use variable before definition
         this.noarg          = true;             // don't use arguments.calller
         this.nocomma        = true;             // don't use the comma operator
         this.nonbsp         = true;             // warn about Mac non-breaking-space character
